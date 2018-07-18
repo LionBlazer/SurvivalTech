@@ -1,0 +1,30 @@
+//itemGroup
+itemGroup.ore=Руды
+itemGroup.mechanism=Электрические приборы
+itemGroup.ingot=Слитки
+
+//block
+tile.copper_cable.name=Медный кабель
+tile.tin_cable.name=Оловянный кабель
+tile.superconductor_cable.name=Сверхпроводник
+tile.solidfuelgenerator.name=Твердотопливный генератор
+tile.smallenergystorage.name=Компактное хранилище электроэнергии
+tile.toolrepairer.name=Ремонтник
+tile.copper_ore.name=Медная руда
+tile.copper_fullblock.name=Медный блок
+
+//item
+item.copper_ingot.name=Медный слиток
+item.smallbattery.name=Компактный аккумулятор
+item.energy_armor_head.name=Энергетический  шлем
+item.energy_armor_chest.name=Энергетический нагрудник
+item.energy_armor_legs.name=Энергетические поножи
+item.energy_armor_feet.name=Энергетический ботинки
+
+//tileentity
+TileEntitySmallEnergyStorage=Маленькое хранилище электроэнергии
+TileEntitySolidFuelGenerator=Твердотопливный генератор
+TileEntityToolRepairer=Ремонтник
+
+//fluid tank
+tile.cannotfilltank.bytemperature=Резервуар не может хранить горячую жидкость

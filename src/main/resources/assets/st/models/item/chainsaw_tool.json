@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "model": "st:item/saw.obj",
+  "textures": {
+    "layer0": "st:tool/chainsaw"
+  }
+}

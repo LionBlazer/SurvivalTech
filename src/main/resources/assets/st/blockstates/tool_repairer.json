@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "st:tool_repairer"
+    }
+  }
+}

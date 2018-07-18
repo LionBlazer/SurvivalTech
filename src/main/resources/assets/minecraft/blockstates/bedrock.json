@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "test=true": {
+      "model": "cobblestone"
+    },
+    "test=false": {
+      "model": "bedrock"
+    }
+  }
+}

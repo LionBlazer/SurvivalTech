@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "particle": "st:block/mechanism/ledmachine/icon2",
+    "up": "st:block/mechanism/ledmachine/icon2",
+    "down": "st:block/mechanism/ledmachine/icon2",
+    "north": "st:block/mechanism/ledmachine/icon2",
+    "east": "st:block/mechanism/ledmachine/icon4",
+    "south": "st:block/mechanism/ledmachine/icon1",
+    "west": "st:block/mechanism/ledmachine/icon4"
+  }
+}

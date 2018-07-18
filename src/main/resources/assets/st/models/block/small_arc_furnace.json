@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "particle": "st:block/mechanism/smallarcfurnace/icon2",
+    "up": "st:block/mechanism/smallarcfurnace/icon2",
+    "down": "st:block/mechanism/smallarcfurnace/icon2",
+    "north": "st:block/mechanism/smallarcfurnace/icon4",
+    "east": "st:block/mechanism/smallarcfurnace/icon2",
+    "south": "st:block/mechanism/smallarcfurnace/icon1",
+    "west": "st:block/mechanism/smallarcfurnace/icon2"
+  }
+}
