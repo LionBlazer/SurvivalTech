@@ -28,7 +28,6 @@ public class Core {
         //    int dq = Acessor.doGet();
         proxy.preInit(event);
     }
-
     //	public static void hookInMethod(int localvar1){
     //        System.out.println("Core.hookInMethod");
     //        System.out.println(localvar1);
