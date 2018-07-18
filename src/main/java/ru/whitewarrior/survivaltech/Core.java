@@ -27,6 +27,7 @@ public class Core {
     public void preInit(FMLPreInitializationEvent event) {
         //    int dq = Acessor.doGet();
         proxy.preInit(event);
+
     }
 
     //	public static void hookInMethod(int localvar1){
