@@ -21,6 +21,10 @@ build
 eclipse
 run
 vanilla
+libs
+src 3
+src - tutorial
+src - tutor
 src - cheat
 *.rar
 *.zip
