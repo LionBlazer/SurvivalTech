@@ -27,4 +27,4 @@ src - cheat
 *.bat
 
 gradlew
-gradle.properties
+*.properties
