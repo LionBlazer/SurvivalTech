@@ -24,4 +24,7 @@ vanilla
 src - cheat
 *.rar
 *.zip
-*.zip7
+*.bat
+
+gradlew
+gradle.properties
