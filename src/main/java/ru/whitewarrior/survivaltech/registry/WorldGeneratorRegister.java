@@ -13,32 +13,32 @@ public class WorldGeneratorRegister {
 private static final List<OreGeneration> listGen = new ArrayList<>();
 
     public static void preInit(){
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.1f, 20,60,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.1f, 40,60,
                 new Pair<>(GameMaterialRegister.copper.getOresBlock().get(0).getDefaultState(), 0.045f),
                 new Pair<>(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(), 0.015f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.04f, 20,55,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.04f, 40,55,
                 new Pair<>(GameMaterialRegister.copper.getOresBlock().get(1).getDefaultState(), 0.035f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.02f, 20,50,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.02f, 30,50,
                 new Pair<>(GameMaterialRegister.tin.getOresBlock().get(0).getDefaultState(), 0.04f),
                 new Pair<>(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(), 0.012f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.04f, 20,45,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.04f, 30,45,
                 new Pair<>(GameMaterialRegister.tin.getOresBlock().get(0).getDefaultState(), 0.04f),
                 new Pair<>(GameMaterialRegister.tin.getOresBlock().get(1).getDefaultState(), 0.02f),
                 new Pair<>(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(), 0.012f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 6,0.04f, 20,55,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 6,0.04f, 40,55,
                 new Pair<>(GameMaterialRegister.tin.getOresBlock().get(1).getDefaultState(), 0.03f),
                 new Pair<>(GameMaterialRegister.copper.getOresBlock().get(0).getDefaultState(), 0.02f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 20,(byte) 7,0.06f, 20,70,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 20,(byte) 7,0.06f, 35,70,
                 new Pair<>(Blocks.IRON_ORE.getDefaultState(), 0.05f)
         );
 
