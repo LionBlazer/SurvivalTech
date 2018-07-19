@@ -20,7 +20,7 @@ import java.util.function.Function;
 
 public class ItemCrushedOreModel implements IModel {
     final ResourceLocation texture;
-    ResourceLocation textureRock = new ResourceLocation(Constants.MODID, "block/crushed/chalcopyrite");
+    ResourceLocation textureRock = new ResourceLocation(Constants.MODID, "item/crushed/rock");
     public ItemCrushedOreModel(ResourceLocation texture){
         this.texture = texture;
     }
