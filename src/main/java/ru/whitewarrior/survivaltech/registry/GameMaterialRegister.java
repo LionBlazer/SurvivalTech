@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.whitewarrior.survivaltech.AdvancedRegistry;
 import ru.whitewarrior.survivaltech.Constants;
 import ru.whitewarrior.survivaltech.api.client.model.ModModelLoader;
+import ru.whitewarrior.survivaltech.api.client.model.imodel.ItemCrushedOreModel;
 import ru.whitewarrior.survivaltech.api.client.model.imodel.ItemModel;
 import ru.whitewarrior.survivaltech.api.client.model.imodel.ItemToolModel;
 import ru.whitewarrior.survivaltech.api.client.model.imodel.OreModel;
@@ -57,6 +58,7 @@ public class GameMaterialRegister {
 
         gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "small_gold", 0.5f, 0.5f, 2, 0, 0, "gold"));
         gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_gold", 0.6f, 0.5f, 2, 0, 0, "gold"));
+        gold.setCrushedOre(new BasicTypeItem("gold", ItemType.CRUSHED_ORE, 32, 0));
         redstone.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "small_redstone", 0.8f, 0.5f, 2, 0, 0, "redstone"));
         diamond.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_diamond", 1.4f, 1.2f, 2, 0, 0, "diamond"));
 
@@ -103,6 +105,7 @@ public class GameMaterialRegister {
         GameMaterialRegister.registerBasicItemModel(tin.getItemsMaterial().get(0));
         GameMaterialRegister.registerBasicItemModel(tin.getItemsMaterial().get(1));
 
+        GameMaterialRegister.registerItemCrushedOreModel(gold.getCrushedOre());
         GameMaterialRegister.registerBasicItemModel(small_iron.getItemsMaterial().get(0));
 
         ModModelLoader.registerModel(small_iron.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_iron")));
@@ -119,4 +122,8 @@ public class GameMaterialRegister {
         ModModelLoader.registerModel(item.getRegistryName(), new ItemToolModel(new ResourceLocation(item.getRegistryName().getResourceDomain(),
                 "item/".concat(((IAdvancedItem)item).getItemType().getPrefix()).concat("/").concat(item.getRegistryName().getResourcePath().substring(0,item.getRegistryName().getResourcePath().length() - ((IAdvancedItem)item).getItemType().getPrefix().length()-1)))));
     }
-}
+    @SideOnly(Side.CLIENT)
+    public static void registerItemCrushedOreModel(Item item){
+        ModModelLoader.registerModel(item.getRegistryName(), new ItemCrushedOreModel(new ResourceLocation(item.getRegistryName().getResourceDomain(),
+                "item/".concat(((IAdvancedItem)item).getItemType().getPrefix()).concat("/").concat(item.getRegistryName().getResourcePath().substring(0,item.getRegistryName().getResourcePath().length() - ((IAdvancedItem)item).getItemType().getPrefix().length()-1)))));
+    }}

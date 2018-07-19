@@ -50,6 +50,10 @@ public class MaterialRegister {
         ForgeRegistries.RECIPES.register(cableTin);
         //FMLCommonHandler.instance().BU
 
+        HammerRecipes crushedGold = new HammerRecipes(new ItemStack(GameMaterialRegister.gold.getOresBlock().get(1)), new ItemStack(GameMaterialRegister.gold.getCrushedOre()));
+        crushedGold.setRegistryName("crushedGold");
+        ForgeRegistries.RECIPES.register(crushedGold);
+
         HammerRecipes copperIngot = new HammerRecipes(new ItemStack(GameMaterialRegister.copper.getItemsMaterial().get(1)), new ItemStack(GameMaterialRegister.copper.getIngot()));
         copperIngot.setRegistryName("copperIngot");
         ForgeRegistries.RECIPES.register(copperIngot);
@@ -80,6 +84,10 @@ public class MaterialRegister {
         GameRegistry.addSmelting(GameMaterialRegister.small_iron.getOresBlock().get(0), new ItemStack(Items.IRON_NUGGET, 3), 0.1f);
         GameRegistry.addSmelting(GameMaterialRegister.copper.getItemsMaterial().get(1), new ItemStack(GameMaterialRegister.copper.getNugget(), 4), 0.1f);
         GameRegistry.addSmelting(GameMaterialRegister.copper.getOresBlock().get(1), new ItemStack(GameMaterialRegister.copper.getItemsMaterial().get(2), 3), 0.1f);
+
+        GameRegistry.addSmelting(GameMaterialRegister.gold.getOresBlock().get(0), new ItemStack(Items.GOLD_NUGGET, 7), 0.1f);
+        GameRegistry.addSmelting(GameMaterialRegister.redstone.getOresBlock().get(0), new ItemStack(Items.REDSTONE, 8), 0.1f);
+
 
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"copperIngot1"), null, new ItemStack(GameMaterialRegister.copper.getIngot()), "TTT", "TTT", "TTT", 'T', "nuggetCopper");
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"copperBlock1"), null, new ItemStack(GameMaterialRegister.copper.getFullBlock()), "TTT", "TTT", "TTT", 'T', "ingotCopper");
@@ -141,6 +149,15 @@ public class MaterialRegister {
                 Arrays.asList(
                         new ItemStack(GameMaterialRegister.tin.getItemsMaterial().get(1), 3)
                 ), 3000));
+
+        SmallArcFurnaceRecipe.RECIPES.add(new SmallArcFurnaceRecipe(
+                Arrays.asList(
+                        new ItemStack(GameMaterialRegister.gold.getCrushedOre())
+                ),
+                Arrays.asList(
+                        new ItemStack(Items.GOLD_INGOT, 1)
+                ), 500));
+
 
         SmallArcFurnaceRecipe.RECIPES.add(new SmallArcFurnaceRecipe(
                 Arrays.asList(

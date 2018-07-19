@@ -48,8 +48,8 @@ private static final List<OreGeneration> listGen = new ArrayList<>();
         );
 
         WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 8,(byte) 3,0.031f, 2,10,
-                new Pair<>(GameMaterialRegister.redstone.getOresBlock().get(0).getDefaultState(), 0.02f),
-                new Pair<>(Blocks.REDSTONE_ORE.getDefaultState(), 0.02f)
+                new Pair<>(GameMaterialRegister.redstone.getOresBlock().get(0).getDefaultState(), 0.05f),
+                new Pair<>(Blocks.REDSTONE_ORE.getDefaultState(), 0.04f)
         );
 
         WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 8,(byte) 2,0.01f, 2,13,

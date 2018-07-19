@@ -23,6 +23,7 @@ public class BasicGameMaterial {
     private BasicTypeBlock fullBlock;
     private BasicTypeItem ingot;
     private BasicTypeItem nugget;
+    private BasicTypeItem crushedOre;
     private Item.ToolMaterial toolMaterial;
 
     public BasicGameMaterial(String materialName, float hardness, int level) {
@@ -50,6 +51,14 @@ public class BasicGameMaterial {
 
     public BasicTypeItem getNugget() {
         return nugget;
+    }
+
+    public void setCrushedOre(BasicTypeItem crushedOre) {
+        this.crushedOre = crushedOre;
+    }
+
+    public BasicTypeItem getCrushedOre() {
+        return crushedOre;
     }
 
     public void addHammer(ItemHammer hammer){
@@ -89,6 +98,8 @@ public class BasicGameMaterial {
             AdvancedRegistry.register(fullBlock);
         if (nugget != null)
             AdvancedRegistry.register(nugget);
+        if(crushedOre != null)
+            AdvancedRegistry.register(crushedOre);
     }
 
     public void registerRender() {
@@ -104,5 +115,7 @@ public class BasicGameMaterial {
             AdvancedRegistry.registerRender(fullBlock);
         if (nugget != null)
             AdvancedRegistry.registerRender(nugget);
+        if(crushedOre != null)
+            AdvancedRegistry.registerRender(crushedOre);
     }
 }

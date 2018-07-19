@@ -12,6 +12,7 @@ public enum ItemType {
 	INGOT("ingot", CreativeTabRegister.INGOT, "ingot"),
 	NUGGET("nugget", CreativeTabRegister.INGOT, "nugget"),
 	CHUNK("chunk", CreativeTabRegister.INGOT, "chunk"),
+	CRUSHED_ORE("crushed", CreativeTabRegister.INGOT, "crushedOre"),
     MISCELLANEA("miscellanea", CreativeTabs.MISC, null),
 	SMALL_CHUNK("small_chunk", CreativeTabRegister.INGOT, "smallChunk"),
 	TOOL("tool", CreativeTabRegister.TOOL, null),

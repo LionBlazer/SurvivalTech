@@ -42,7 +42,7 @@ public class WorldGenEventHandler {
             }
             else {
                 OreGeneration generationOre = WorldGeneratorRegister.getListGen().get(event.getRand().nextInt(WorldGeneratorRegister.getListGen().size()));
-                yPos = generationOre.getyMin() + event.getRand().nextInt(generationOre.getyMax() - generationOre.getyMin());
+                yPos = generationOre.getyMin() + generationOre.getYSize()+ event.getRand().nextInt(generationOre.getyMax() - generationOre.getyMin());
                 generation = new Pair<>(generationOre, yPos);
                 if(event.getRand().nextFloat()/WorldGeneratorRegister.getListGen().size() * 4f > generation.getKey().getSpawnChance())
                 {

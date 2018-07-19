@@ -22,6 +22,12 @@ private String originalName;
 		this.originalName = name;
 		this.type=type;
 	}
+    public BasicTypeItem(String name, ItemType type, int maxStackSize, int maxDamageIn, String oreName) {
+        super(name+"_"+type.getPrefix(), name+"_"+type.getPrefix(), type.getCreativeTab(), maxStackSize, maxDamageIn);
+        this.oreName = type.getOreDictionary() + TextUtil.firstUpperCase(oreName);
+        this.originalName = name;
+        this.type=type;
+    }
 
     public String getOriginalName() {
         return originalName;
