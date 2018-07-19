@@ -28,9 +28,9 @@ public class Core {
         proxy.preInit(event);
 	}
 
-	//public static boolean hookInMethod(int localvar1){
+	//public static boolean hookInMethod(int localVar1){
    //     System.out.println("Core.hookInMethod");
-   //     System.out.println(localvar1);
+   //     System.out.println(localVar1);
    //     return false;
   //  }
 
