@@ -31,9 +31,12 @@ public class BlockRedStoneFluxAntiConverter extends BlockEnergyHorizontal {
     @Nullable
     @Override
     public TileEntityBlock createTileEntity(World world, IBlockState state) {
-        try {
-            Class.forName("cofh.redstoneflux.api.IEnergyReceiver");
-        } catch (ClassNotFoundException e) {
+        try
+        {
+            Class.forName("cofh.redstoneflux.api.IEnergyReceiver" );
+        }
+        catch( ClassNotFoundException e )
+        {
             return null;
         }
         return (TileEntityBlock) WrapperUtil.createTileRfAntiConvertr();

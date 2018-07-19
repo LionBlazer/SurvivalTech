@@ -80,7 +80,7 @@ public class SimplePacket implements IMessage, IMessageHandler<SimplePacket, Sim
         getNetwork().sendToServer(this);
     }
 
-    protected SimpleNetworkWrapper getNetwork() {
+    protected SimpleNetworkWrapper getNetwork(){
         return MessageRegister.NETWORK;
     }
 }

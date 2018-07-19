@@ -12,14 +12,13 @@ import ru.whitewarrior.survivaltech.coremod.packet.NetworkPacket;
 public class HookTransformer implements IClassTransformer {
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        if (transformedName.equals("com.google.gson.annotations.JsonAdapter") || transformedName.equals("ru.whitewarrior.survivaltech.coremod.packet.NetworkPacket"))
-            return basicClass;
+        if(transformedName.equals("com.google.gson.annotations.JsonAdapter") || transformedName.equals("ru.whitewarrior.survivaltech.coremod.packet.NetworkPacket")) return basicClass;
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(basicClass);
         classReader.accept(classNode, 0);
         boolean isConstructorExists = false;
         boolean isAnnotated = false;
-        if (classNode.visibleAnnotations != null)
+        if(classNode.visibleAnnotations != null)
             for (AnnotationNode node : classNode.visibleAnnotations) {
                 if (node != null && node.desc != null && node.desc.equals(Type.getDescriptor(NetworkPacket.class))) {
                     isAnnotated = true;

@@ -11,22 +11,27 @@ import net.minecraft.world.World;
 import ru.whitewarrior.survivaltech.api.common.item.IAdvancedItem;
 import ru.whitewarrior.survivaltech.api.common.item.ItemType;
 
-public class ItemOreMapEmpty extends ItemEmptyMap implements IAdvancedItem {
+public class ItemOreMapEmpty extends ItemEmptyMap  implements IAdvancedItem {
     public ItemOreMapEmpty(String name) {
-        setRegistryName(name + "_" + getItemType().getPrefix());
-        setUnlocalizedName(name + "_" + getItemType().getPrefix());
+        setRegistryName(name+"_"+getItemType().getPrefix());
+        setUnlocalizedName(name+"_"+getItemType().getPrefix());
         this.setCreativeTab(getItemType().getCreativeTab());
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ItemStack itemstack = ItemOreMap.setupNewMap(worldIn, playerIn.posX, playerIn.posZ, (byte) 2, true, true);
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+    {
+        ItemStack itemstack = ItemOreMap.setupNewMap(worldIn, playerIn.posX, playerIn.posZ, (byte)2, true, true);
         ItemStack itemstack1 = playerIn.getHeldItem(handIn);
         itemstack1.shrink(1);
 
-        if (itemstack1.isEmpty()) {
+        if (itemstack1.isEmpty())
+        {
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-        } else {
-            if (!playerIn.inventory.addItemStackToInventory(itemstack.copy())) {
+        }
+        else
+        {
+            if (!playerIn.inventory.addItemStackToInventory(itemstack.copy()))
+            {
                 playerIn.dropItem(itemstack, false);
             }
 

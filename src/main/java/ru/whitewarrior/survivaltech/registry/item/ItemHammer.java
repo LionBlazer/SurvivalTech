@@ -14,8 +14,8 @@ public class ItemHammer extends ItemPickaxe implements IAdvancedItem, IOreDictio
         setMaxDamage(durability);
         setNoRepair();
         setMaxStackSize(1);
-        setRegistryName(name + "_" + getItemType().getPrefix());
-        setUnlocalizedName(name + "_" + getItemType().getPrefix());
+        setRegistryName(name+"_"+getItemType().getPrefix());
+        setUnlocalizedName(name+"_"+getItemType().getPrefix());
         this.setCreativeTab(getItemType().getCreativeTab());
     }
 

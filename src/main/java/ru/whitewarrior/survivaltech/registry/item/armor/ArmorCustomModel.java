@@ -15,30 +15,29 @@ import ru.whitewarrior.survivaltech.registry.item.armor.render.RenderIridescentA
 /**
  * Date: 2018-01-09.
  * Time: 9:54:55.
- *
  * @author WhiteWarrior
  */
-public class ArmorCustomModel extends ItemArmor implements IAdvancedItem {
+public class ArmorCustomModel extends ItemArmor implements IAdvancedItem{
 
-    public ArmorCustomModel(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
-        super(materialIn, renderIndexIn, equipmentSlotIn);
-        // TODO Auto-generated constructor stub
-    }
+	public ArmorCustomModel(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
+		super(materialIn, renderIndexIn, equipmentSlotIn);
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model) {
-        ModelBiped armorModel = new RenderIridescentArmorModel(armorSlot.getIndex(), itemStack);
-        return armorModel;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model) {
+		ModelBiped armorModel = new RenderIridescentArmorModel(armorSlot.getIndex(), itemStack);
+	    return armorModel;
+	}
 
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        return "st:textures/energy_armor_model.png";
-    }
-
-    @Override
-    public ItemType getItemType() {
-        return ItemType.ARMOR;
-    }
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
+		return "st:textures/energy_armor_model.png";
+	}
+	
+	@Override
+	public ItemType getItemType() {
+		return ItemType.ARMOR;
+	}
 }

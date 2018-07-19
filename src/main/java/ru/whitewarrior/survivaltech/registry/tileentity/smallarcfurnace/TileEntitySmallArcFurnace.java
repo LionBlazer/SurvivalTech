@@ -59,10 +59,9 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
                         if (stack.isEmpty())
                             continue;
                         for (int k = 0; k < recipe.getInput().size(); k++) {
-                            if (usedInputs.contains(k))
-                                continue;
+                            if(usedInputs.contains(k)) continue;
                             if (recipe.getInput().get(k) instanceof ItemStack) {
-                                ItemStack input = ((ItemStack) recipe.getInput().get(k)).copy();
+                                ItemStack input =( (ItemStack) recipe.getInput().get(k)).copy();
                                 if (ItemStack.areItemsEqual(input, stack) && stack.getCount() >= input.getCount()) {
                                     curMatches++;
                                     slots[k] = new Pair<>(new ItemStack(input.getItem(), stack.getCount() - input.getCount()), i);
@@ -75,11 +74,11 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
                                 if (ores.length > 0) {
                                     String oreName = ((Pair<String, Integer>) recipe.getInput().get(k)).getKey();
                                     for (int i1 = 0; i1 < ores.length; i1++) {
-                                        if (OreDictionary.getOreName(ores[i1]).equals(oreName) && stack.getCount() >= ((Pair<String, Integer>) recipe.getInput().get(k)).getValue()) {
+                                        if (OreDictionary.getOreName(ores[i1]).equals(oreName) &&  stack.getCount() >= ((Pair<String, Integer>)recipe.getInput().get(k)).getValue()) {
                                             curMatches++;
                                             isReturn = true;
                                             usedInputs.add(k);
-                                            slots[k] = new Pair<>(new ItemStack(stack.getItem(), stack.getCount() - ((Pair<String, Integer>) recipe.getInput().get(k)).getValue()), i);
+                                            slots[k] = new Pair<>(new ItemStack(stack.getItem(), stack.getCount() - ((Pair<String, Integer>)recipe.getInput().get(k)).getValue()), i);
                                             break;
                                         }
                                     }
@@ -106,9 +105,9 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
                         indexCurrent = j;
                         matches = curMatches;
                         timeMax = recipe.getTime();
-                        slotsMinus = slots;
+                        slotsMinus=slots;
                     }
-                    if (j >= SmallArcFurnaceRecipe.RECIPES.size() - 1 && indexCurrent != -1) {
+                    if(j >= SmallArcFurnaceRecipe.RECIPES.size() - 1 && indexCurrent != -1){
                         for (int i = 0; i < slotsMinus.length; i++) {
                             setStackInSlot(slotsMinus[i].getValue(), slotsMinus[i].getKey());
                         }
@@ -117,8 +116,8 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
                 }
             } else {
                 if (timeCurrent < timeMax) {
-                    lasTimeMax++;
-                    if (getEnergyStoredMod() >= 64) {
+                    lasTimeMax ++;
+                    if(getEnergyStoredMod() >= 64) {
                         extractEnergy(64, false);
                         timeCurrent++;
                         lasTimeMax = timeCurrent;
@@ -162,8 +161,8 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
                     updateVars();
                 }
             }
-            //  if(stateUpdate)
-            TileEntityUtil.setState(world, pos, BlockSolidFuelGenerator.BURNING, timeCurrent > 0 && Math.abs(timeCurrent - lasTimeMax) < 100);
+          //  if(stateUpdate)
+                TileEntityUtil.setState(world, pos, BlockSolidFuelGenerator.BURNING, timeCurrent > 0 && Math.abs(timeCurrent - lasTimeMax) < 100);
 
         }
 
@@ -204,7 +203,7 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
 
     @Override
     public Object getGuiContainer(EntityPlayer player) {
-        return new BasicGuiContainer((Container) getContainer(player), this, player) {
+        return new BasicGuiContainer((Container) getContainer(player), this, player){
             private EnergybarGuiElement energyBar;
             private TooltipGuiElement tooltip;
             private TooltipGuiElement tooltipTime;
@@ -212,10 +211,10 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
             @Override
             public void initGui() {
                 super.initGui();
-                energyBar = new EnergybarGuiElement(GuiUtil.getCoords(this)[0] + xSize - 90, GuiUtil.getCoords(this)[1] + 90, 70);
-                tooltip = new TooltipGuiElement(energyBar.getX() - GuiUtil.getCoords(this)[0], energyBar.getY() - GuiUtil.getCoords(this)[1], energyBar.getWidth(), energyBar.getHeight(), "");
-                tooltipTime = new TooltipGuiElement(75, 50, 24, 15, "");
-                tooltip.getTooltip().set(0, EnergyHelper.getColorForEnergy(getStorage().getEnergyStoredMod(), getStorage().getMaxEnergyStoredMod()).toString() + NumberUtil.rounding(getStorage().getEnergyStoredMod()) + " SEU");
+                energyBar = new EnergybarGuiElement(GuiUtil.getCoords(this)[0] + xSize - 90, GuiUtil.getCoords(this)[1] + 90 , 70);
+                tooltip = new TooltipGuiElement(energyBar.getX() - GuiUtil.getCoords(this)[0], energyBar.getY()-GuiUtil.getCoords(this)[1], energyBar.getWidth(), energyBar.getHeight(), "");
+                tooltipTime = new TooltipGuiElement(75,50, 24, 15, "");
+                tooltip.getTooltip().set(0, EnergyHelper.getColorForEnergy(getStorage().getEnergyStoredMod(), getStorage().getMaxEnergyStoredMod()).toString() + NumberUtil.rounding(getStorage().getEnergyStoredMod())+" SEU");
                 tooltipTime.getTooltip().set(0, "");
 
             }
@@ -229,13 +228,12 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
             protected void init(int x, int y) {
                 addTextureSlots();
                 energyBar.draw((int) getEnergyStoredMod(), (int) getMaxEnergyStoredMod());
-                tooltip.getTooltip().set(0, EnergyHelper.getColorForEnergy(getStorage().getEnergyStoredMod(), getStorage().getMaxEnergyStoredMod()).toString() + NumberUtil.rounding(getStorage().getEnergyStoredMod()) + " SEU");
-                tooltipTime.getTooltip().set(0, (int) NumberUtil.rounding((float) timeMax == 0 ? 0 : (float) timeCurrent / (float) timeMax * 100) + "%");
+                tooltip.getTooltip().set(0, EnergyHelper.getColorForEnergy(getStorage().getEnergyStoredMod(), getStorage().getMaxEnergyStoredMod()).toString() + NumberUtil.rounding(getStorage().getEnergyStoredMod())+" SEU");
+                tooltipTime.getTooltip().set(0, (int)NumberUtil.rounding((float) timeMax == 0 ? 0 :(float)timeCurrent/(float) timeMax* 100) + "%");
                 Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-                this.drawTexturedModalRect(guiLeft + 75, guiTop + 50, 176, 14, 24, 15);
-                this.drawTexturedModalRect(guiLeft + 75, guiTop + 50, 176, 29, (int) (24 * (float) timeCurrent / (float) timeMax), 15);
+                this.drawTexturedModalRect(guiLeft + 75,guiTop + 50, 176,14,24, 15);
+                this.drawTexturedModalRect(guiLeft + 75,guiTop + 50, 176,29,(int)(24 * (float)timeCurrent/(float)timeMax), 15);
             }
-
             @Override
             protected void renderHoveredToolTip(int mouseX, int mouseY) {
                 super.renderHoveredToolTip(mouseX, mouseY);

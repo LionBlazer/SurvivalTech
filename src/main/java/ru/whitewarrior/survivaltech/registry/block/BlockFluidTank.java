@@ -12,47 +12,44 @@ import ru.whitewarrior.survivaltech.registry.tileentity.fluidtank.TileEntityFlui
 
 /**
  * Date: 2018-03-24. Time: 21:43:24.
- *
+ * 
  * @author WhiteWarrior
  */
-public class BlockFluidTank extends BlockWithTileEntity {
+public class BlockFluidTank extends BlockWithTileEntity{
 
-    public BlockFluidTank(BlockType type, String name) {
-        super(type);
-        name = name.toLowerCase();
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
-        this.setHardness(0.6f);
-        this.setCreativeTab(getBlockType().getCreativeTab());
-    }
+	public BlockFluidTank(BlockType type, String name) {
+		super(type);
+		name = name.toLowerCase();
+		this.setRegistryName(name);
+		this.setUnlocalizedName(name);
+		this.setHardness(0.6f);
+		this.setCreativeTab(getBlockType().getCreativeTab());
+	}
 
-
-    @Override
-    public TileEntityBlock createTileEntity(World worldIn, IBlockState state) {
-        return new TileEntityFluidTank();
-    }
 
     @Override
-    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        // TODO Auto-generated method stub
-        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+    public TileEntityBlock createTileEntity(World worldIn, IBlockState state)  {
+		return new TileEntityFluidTank();
+	}
+	
+	@Override
+	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		// TODO Auto-generated method stub
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+	}
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isNormalCube(IBlockState state) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

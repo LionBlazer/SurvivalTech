@@ -17,50 +17,49 @@ import ru.whitewarrior.survivaltech.registry.tileentity.smallenergystorage.TileE
 /**
  * Date: 2017-12-30.
  * Time: 21:48:25.
- *
  * @author WhiteWarrior
  */
-public class BlockSmallEnergyStorage extends BlockEnergyHorizontal {
+public class BlockSmallEnergyStorage extends BlockEnergyHorizontal{
 
-    public BlockSmallEnergyStorage(BlockType type, String name) {
-        super(type);
-        name = name.toLowerCase();
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
-        this.setCreativeTab(CreativeTabRegister.MECHANISM);
-        this.setHardness(0.6f);
-    }
+	public BlockSmallEnergyStorage(BlockType type, String name) {
+		super(type);
+		name = name.toLowerCase();
+		this.setRegistryName(name);
+		this.setUnlocalizedName(name);
+		this.setCreativeTab(CreativeTabRegister.MECHANISM);
+		this.setHardness(0.6f);
+	}
 
-    @Override
-    public NetworkProviderType getProviderType(IBlockAccess world, BlockPos pos) {
-        return NetworkProviderType.MULTI;
-    }
+	@Override
+	public NetworkProviderType getProviderType(IBlockAccess world, BlockPos pos) {
+		return NetworkProviderType.MULTI;
+	}
 
-    @Override
-    public EnumFacing[] getInputFacing(IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return new EnumFacing[]{state.getValue(BlockHorizontal.FACING).getOpposite()};
-    }
+	@Override
+	public EnumFacing[] getInputFacing(IBlockAccess world, BlockPos pos) {
+		IBlockState state = world.getBlockState(pos);
+		return new EnumFacing[] { state.getValue(BlockHorizontal.FACING).getOpposite()};
+	}
+	
+	@Override
+	public EnumFacing[] getOutputFacing(IBlockAccess world, BlockPos pos) {
+		IBlockState state = world.getBlockState(pos);
+		return new EnumFacing[] { state.getValue(BlockHorizontal.FACING)};
+	}
 
-    @Override
-    public EnumFacing[] getOutputFacing(IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return new EnumFacing[]{state.getValue(BlockHorizontal.FACING)};
-    }
+	@Override
+	public boolean allOutputInputFacing(IBlockAccess world, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public boolean allOutputInputFacing(IBlockAccess world, BlockPos pos) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+	@Override
+	public NetworkType getNetworkType() {
+		return NetworkType.ELECTRICITY;
+	}
 
-    @Override
-    public NetworkType getNetworkType() {
-        return NetworkType.ELECTRICITY;
-    }
-
-    @Override
-    public TileEntityBlock createTileEntity(World worldIn, IBlockState state) {
-        return new TileEntitySmallEnergyStorage();
-    }
+	@Override
+	public TileEntityBlock createTileEntity(World worldIn, IBlockState state) {
+		return new TileEntitySmallEnergyStorage();
+	}
 }

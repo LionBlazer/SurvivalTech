@@ -1,34 +1,12 @@
 {
-  "variants": {
-    "burning=false,facing=north": {
-      "model": "st:solid_fuel_generator"
-    },
-    "burning=false,facing=south": {
-      "model": "st:solid_fuel_generator",
-      "y": 180
-    },
-    "burning=false,facing=west": {
-      "model": "st:solid_fuel_generator",
-      "y": 270
-    },
-    "burning=false,facing=east": {
-      "model": "st:solid_fuel_generator",
-      "y": 90
-    },
-    "burning=true,facing=north": {
-      "model": "st:solid_fuel_generator_active"
-    },
-    "burning=true,facing=south": {
-      "model": "st:solid_fuel_generator_active",
-      "y": 180
-    },
-    "burning=true,facing=west": {
-      "model": "st:solid_fuel_generator_active",
-      "y": 270
-    },
-    "burning=true,facing=east": {
-      "model": "st:solid_fuel_generator_active",
-      "y": 90
+    "variants": {
+        "burning=false,facing=north": { "model": "st:solid_fuel_generator" },
+        "burning=false,facing=south": { "model": "st:solid_fuel_generator", "y": 180 },
+        "burning=false,facing=west":  { "model": "st:solid_fuel_generator", "y": 270 },
+        "burning=false,facing=east":  { "model": "st:solid_fuel_generator", "y": 90 },
+		"burning=true,facing=north": { "model": "st:solid_fuel_generator_active" },
+        "burning=true,facing=south": { "model": "st:solid_fuel_generator_active", "y": 180 },
+        "burning=true,facing=west":  { "model": "st:solid_fuel_generator_active", "y": 270 },
+        "burning=true,facing=east":  { "model": "st:solid_fuel_generator_active", "y": 90 }
     }
-  }
 }

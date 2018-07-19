@@ -24,45 +24,44 @@ import java.util.List;
 /**
  * Date: 2018-01-09.
  * Time: 9:54:55.
- *
  * @author WhiteWarrior
  */
-public class ItemArmorPower extends ItemArmorEnergy implements IAdvancedItem, IOverlayItem {
+public class ItemArmorPower extends ItemArmorEnergy implements IAdvancedItem, IOverlayItem{
     private String texture;
     private static final ResourceLocation loc = new ResourceLocation(Constants.MODID, "textures/gui/overlay/glass.png");
 
-    public ItemArmorPower(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String texture, int maxEnergy, int maxTransfer) {
-        super(materialIn, renderIndexIn, equipmentSlotIn, maxEnergy, maxTransfer);
-        this.texture = texture;
-    }
+	public ItemArmorPower(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String texture, int maxEnergy, int maxTransfer) {
+		super(materialIn, renderIndexIn, equipmentSlotIn, maxEnergy, maxTransfer);
+        this.texture=texture;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model) {
-        ModelBiped armorModel = new RenderIridescentArmorModel(armorSlot.getIndex(), itemStack);
-        return armorModel;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped model) {
+		ModelBiped armorModel = new RenderIridescentArmorModel(armorSlot.getIndex(), itemStack);
+	    return armorModel;
+	}
 
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
         NBTTagCompound compound = stack.getTagCompound();
-        if (stack.hasTagCompound()) {
-            tooltip.add(LocalizationUtil.readFromLang("red") + ": " + compound.getByte("red"));
-            tooltip.add(LocalizationUtil.readFromLang("green") + ": " + compound.getByte("green"));
-            tooltip.add(LocalizationUtil.readFromLang("blue") + ": " + compound.getByte("blue"));
+        if(stack.hasTagCompound()){
+            tooltip.add(LocalizationUtil.readFromLang("red")+": "+compound.getByte("red"));
+            tooltip.add(LocalizationUtil.readFromLang("green")+": "+compound.getByte("green"));
+            tooltip.add(LocalizationUtil.readFromLang("blue")+": "+compound.getByte("blue"));
         }
     }
 
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        return texture;
-    }
-
-    @Override
-    public ItemType getItemType() {
-        return ItemType.ARMOR;
-    }
+	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
+		return texture;
+	}
+	
+	@Override
+	public ItemType getItemType() {
+		return ItemType.ARMOR;
+	}
 
 
     @Override
@@ -72,8 +71,8 @@ public class ItemArmorPower extends ItemArmorEnergy implements IAdvancedItem, IO
 
     @Override
     public ResourceLocation getOverlay(ItemStack stack, EntityPlayer player, byte slotId) {
-        if (slotId == 3 && this.getEnergyStored(stack) > 0)
+	    if(slotId == 3 && this.getEnergyStored(stack) > 0)
             return loc;
-        return null;
+	    return null;
     }
 }

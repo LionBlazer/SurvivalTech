@@ -17,18 +17,15 @@ import ru.whitewarrior.survivaltech.util.NumberUtil;
  * rf -> se
  */
 public class TileEntityRedStoneFluxAntiConverter extends TileEntityEnergyManager implements IEnergyReceiver, IEnergyStorage {
-    ElectricEnergyStorage storage = new ElectricEnergyStorage(NumberUtil.toK(4), 8, 8);
-
+    ElectricEnergyStorage storage = new ElectricEnergyStorage(NumberUtil.toK(4), 8,8);
     public TileEntityRedStoneFluxAntiConverter() {
         super("TileEntityRedStoneFluxAntiConverter");
     }
-
     @Override
     public void onBlockActivated(IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote)
-            playerIn.sendMessage(new TextComponentString(storage.getEnergyStoredMod() + " energy stored"));
+        if(!world.isRemote)
+            playerIn.sendMessage(new TextComponentString(storage.getEnergyStoredMod()+" energy stored"));
     }
-
     @Override
     public void update() {
         super.update();

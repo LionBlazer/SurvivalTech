@@ -3,7 +3,6 @@ package ru.whitewarrior.survivaltech.api.common.energy;
 /**
  * Date: 2017-12-29.
  * Time: 21:03:28.
- *
  * @author WhiteWarrior
  */
 public interface IEnergyElectric {

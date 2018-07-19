@@ -14,32 +14,29 @@ import net.minecraft.util.text.TextComponentString;
 import ru.whitewarrior.survivaltech.api.common.energy.ElectricEnergyStorage;
 import ru.whitewarrior.survivaltech.api.common.tileentity.TileEntityEnergyStandard;
 import ru.whitewarrior.survivaltech.util.NumberUtil;
-
 /**
  * se -> rf
  */
 public class TileEntityRedStoneFluxConverter extends TileEntityEnergyStandard implements IEnergyProvider, IEnergyStorage, ITickable {
-    ElectricEnergyStorage storage = new ElectricEnergyStorage(NumberUtil.toK(4), 8, 8);
-
+    ElectricEnergyStorage storage = new ElectricEnergyStorage(NumberUtil.toK(4), 8,8);
     public TileEntityRedStoneFluxConverter() {
         super("TileEntityRedStoneFluxConverter");
     }
 
     @Override
     public void onBlockActivated(IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote)
-            playerIn.sendMessage(new TextComponentString(storage.getEnergyStoredMod() + " energy stored"));
+       if(!world.isRemote)
+        playerIn.sendMessage(new TextComponentString(storage.getEnergyStoredMod()+" energy stored"));
     }
 
     @Override
     public void update() {
-        if (!world.isRemote) {
+        if(!world.isRemote){
             EnumFacing outputRF = world.getBlockState(pos).getValue(BlockHorizontal.FACING);
-            if (world.getTileEntity(pos.offset(outputRF)) instanceof IEnergyReceiver) {
+            if(world.getTileEntity(pos.offset(outputRF)) instanceof IEnergyReceiver){
                 IEnergyReceiver receiverRF = (IEnergyReceiver) world.getTileEntity(pos.offset(outputRF));
-                if (receiverRF == null)
-                    return;
-                int canExtract = (int) getStorage().extractEnergy(8, true);
+                if(receiverRF == null) return;
+                int canExtract =(int)getStorage().extractEnergy(8, true);
                 int amountRf = receiverRF.receiveEnergy(outputRF.getOpposite(), canExtract, true);
                 getStorage().extractEnergy(amountRf, false);
                 receiverRF.receiveEnergy(outputRF.getOpposite(), amountRf, false);

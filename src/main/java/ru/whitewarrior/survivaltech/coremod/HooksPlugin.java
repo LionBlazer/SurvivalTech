@@ -10,7 +10,7 @@ public class HooksPlugin implements IFMLLoadingPlugin //,IClassTransformer
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{HookTransformer.class.getName()};
+        return new String[] {HookTransformer.class.getName()};
     }
 
     @Override
@@ -34,17 +34,17 @@ public class HooksPlugin implements IFMLLoadingPlugin //,IClassTransformer
         return null;
     }
 
-    //    @Override
-    //    public byte[] transform(String name, String transformedName, byte[] basicClass) {
-    //        switch (transformedName) {
-    //            case "ru.whitewarrior.survivaltech.coremod.Acessor": {
-    //                ClassReader cr = new ClassReader(basicClass);
-    //                ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-    //                TestVisitor cv = new TestVisitor(cw);
-    //                cr.accept(cv, ClassReader.SKIP_FRAMES);
-    //                return cw.toByteArray();
-    //            }
-    //        }
-    //        return basicClass;
-    //    }
+//    @Override
+//    public byte[] transform(String name, String transformedName, byte[] basicClass) {
+//        switch (transformedName) {
+//            case "ru.whitewarrior.survivaltech.coremod.Acessor": {
+//                ClassReader cr = new ClassReader(basicClass);
+//                ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+//                TestVisitor cv = new TestVisitor(cw);
+//                cr.accept(cv, ClassReader.SKIP_FRAMES);
+//                return cw.toByteArray();
+//            }
+//        }
+//        return basicClass;
+//    }
 }

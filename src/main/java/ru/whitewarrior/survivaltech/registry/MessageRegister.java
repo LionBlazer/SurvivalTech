@@ -18,15 +18,15 @@ public class MessageRegister {
 
     @SuppressWarnings("unchecked")
     public static void preInit(FMLPreInitializationEvent event) {
-        for (ASMDataTable.ASMData data : event.getAsmData().getAll(NetworkPacket.class.getName())) {
+        for(ASMDataTable.ASMData data : event.getAsmData().getAll(NetworkPacket.class.getName())){
             try {
                 Class packetClass = Class.forName(data.getClassName());
                 if (!SimplePacket.class.isAssignableFrom(packetClass))
                     throw new ClassCastException("Class must extends SimplePacket!");
                 Annotation packet = packetClass.getDeclaredAnnotation(NetworkPacket.class);
-                MessageRegister.register(packetClass, ((NetworkPacket) packet).value());
+                MessageRegister.register(packetClass, ((NetworkPacket)packet).value());
             } catch (Exception exception) {
-                System.err.print("Packet '" + data.getClassName() + "' has error! (" + exception + ")\n");
+                 System.err.print("Packet '" + data.getClassName() + "' has error! ("+exception+")\n");
             }
         }
     }

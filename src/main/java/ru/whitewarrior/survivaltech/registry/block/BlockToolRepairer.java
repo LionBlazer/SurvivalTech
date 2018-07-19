@@ -16,65 +16,63 @@ import ru.whitewarrior.survivaltech.registry.tileentity.toolrepairer.TileEntityT
 /**
  * Date: 2017-12-31.
  * Time: 20:28:32.
- *
  * @author WhiteWarrior
  */
-public class BlockToolRepairer extends BlockEnergy {
+public class BlockToolRepairer extends BlockEnergy{
 
-    public BlockToolRepairer(BlockType type, String name) {
-        super(type);
-        name = name.toLowerCase();
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
-        this.setCreativeTab(CreativeTabRegister.MECHANISM);
-        this.setHardness(0.5f);
-    }
+	public BlockToolRepairer(BlockType type, String name) {
+		super(type);
+		name = name.toLowerCase();
+		this.setRegistryName(name);
+		this.setUnlocalizedName(name);
+		this.setCreativeTab(CreativeTabRegister.MECHANISM);
+		this.setHardness(0.5f);
+	}
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public NetworkProviderType getProviderType(IBlockAccess world, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return NetworkProviderType.RECEIVER;
+	}
 
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public EnumFacing[] getOutputFacing(IBlockAccess world, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public NetworkProviderType getProviderType(IBlockAccess world, BlockPos pos) {
-        // TODO Auto-generated method stub
-        return NetworkProviderType.RECEIVER;
-    }
+	@Override
+	public EnumFacing[] getInputFacing(IBlockAccess world, BlockPos pos) {
+		IBlockState state = world.getBlockState(pos);
+		return new EnumFacing[] { EnumFacing.DOWN};
+	}
 
-    @Override
-    public EnumFacing[] getOutputFacing(IBlockAccess world, BlockPos pos) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public boolean allOutputInputFacing(IBlockAccess world, BlockPos pos) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public EnumFacing[] getInputFacing(IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return new EnumFacing[]{EnumFacing.DOWN};
-    }
-
-    @Override
-    public boolean allOutputInputFacing(IBlockAccess world, BlockPos pos) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public NetworkType getNetworkType() {
-        // TODO Auto-generated method stub
-        return NetworkType.ELECTRICITY;
-    }
+	@Override
+	public NetworkType getNetworkType() {
+		// TODO Auto-generated method stub
+		return NetworkType.ELECTRICITY;
+	}
 
 
     @Override
     public TileEntityBlock createTileEntity(World worldIn, IBlockState state) {
-        // TODO Auto-generated method stub
-        return new TileEntityToolRepairer();
-    }
+		// TODO Auto-generated method stub
+		return new TileEntityToolRepairer();
+	}
 
 }

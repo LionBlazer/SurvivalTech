@@ -33,13 +33,14 @@ import java.util.List;
 
 public class ItemOreMap extends ItemMap implements IAdvancedItem {
     public ItemOreMap(String name) {
-        setRegistryName(name + "_" + getItemType().getPrefix());
-        setUnlocalizedName(name + "_" + getItemType().getPrefix());
+        setRegistryName(name+"_"+getItemType().getPrefix());
+        setUnlocalizedName(name+"_"+getItemType().getPrefix());
         this.setCreativeTab(getItemType().getCreativeTab());
         setHasSubtypes(false);
     }
 
-    public static ItemStack setupNewMap(World worldIn, double worldX, double worldZ, byte scale, boolean trackingPosition, boolean unlimitedTracking) {
+    public static ItemStack setupNewMap(World worldIn, double worldX, double worldZ, byte scale, boolean trackingPosition, boolean unlimitedTracking)
+    {
         ItemStack itemstack = new ItemStack(ItemRegister.oreMap, 1, worldIn.getUniqueDataId("map"));
         String s = "map_" + itemstack.getMetadata();
         MapData mapdata = new MapData(s);
@@ -61,30 +62,36 @@ public class ItemOreMap extends ItemMap implements IAdvancedItem {
 
     @Override
     public void updateMapData(World worldIn, Entity viewer, MapData data) {
-        if (worldIn.provider.getDimension() == data.dimension && viewer instanceof EntityPlayer) {
+        if (worldIn.provider.getDimension() == data.dimension && viewer instanceof EntityPlayer)
+        {
             int i = 1 << data.scale;
             int j = data.xCenter;
             int k = data.zCenter;
-            int l = MathHelper.floor(viewer.posX - (double) j) / i + 64;
-            int i1 = MathHelper.floor(viewer.posZ - (double) k) / i + 64;
+            int l = MathHelper.floor(viewer.posX - (double)j) / i + 64;
+            int i1 = MathHelper.floor(viewer.posZ - (double)k) / i + 64;
             int j1 = 128 / i;
 
-            if (worldIn.provider.isNether()) {
+            if (worldIn.provider.isNether())
+            {
                 j1 /= 2;
             }
 
-            MapData.MapInfo mapdata$mapinfo = data.getMapInfo((EntityPlayer) viewer);
+            MapData.MapInfo mapdata$mapinfo = data.getMapInfo((EntityPlayer)viewer);
             ++mapdata$mapinfo.step;
             boolean flag = false;
             OreGenSavedData savedData = WorldSavedDataUtil.get(worldIn, "ore_gen_data", OreGenSavedData.class);
 
-            for (int k1 = l - j1 + 1; k1 < l + j1; ++k1) {
-                if ((k1 & 15) == (mapdata$mapinfo.step & 15) || flag) {
+            for (int k1 = l - j1 + 1; k1 < l + j1; ++k1)
+            {
+                if ((k1 & 15) == (mapdata$mapinfo.step & 15) || flag)
+                {
                     flag = false;
                     double d0 = 0.0D;
 
-                    for (int l1 = i1 - j1 - 1; l1 < i1 + j1; ++l1) {
-                        if (k1 >= 0 && l1 >= -1 && k1 < 128 && l1 < 128) {
+                    for (int l1 = i1 - j1 - 1; l1 < i1 + j1; ++l1)
+                    {
+                        if (k1 >= 0 && l1 >= -1 && k1 < 128 && l1 < 128)
+                        {
                             int i2 = k1 - l;
                             int j2 = l1 - i1;
                             boolean flag1 = i2 * i2 + j2 * j2 > (j1 - 2) * (j1 - 2);
@@ -93,37 +100,29 @@ public class ItemOreMap extends ItemMap implements IAdvancedItem {
                             Multiset<MapColor> multiset = HashMultiset.create();
                             Chunk chunk = worldIn.getChunkFromBlockCoords(new BlockPos(k2, 0, l2));
 
-                            if (!chunk.isEmpty()) {
+                            if (!chunk.isEmpty())
+                            {
                                 int i3 = k2 & 15;
                                 int j3 = l2 & 15;
                                 int k3 = 0;
                                 double d1 = 0.0D;
 
-                                Pair<Integer, Integer> pairCords = new Pair<>(k2 / 16 / 4, l2 / 16 / 4);
-                                if (savedData.getListVeinOre().containsKey(pairCords) && savedData.getListVeinOre().get(pairCords).getValue() != -1) {
+                                Pair<Integer, Integer> pairCords = new Pair<>(k2 /16 / 4, l2/16 / 4);
+                                if(savedData.getListVeinOre().containsKey(pairCords) && savedData.getListVeinOre().get(pairCords).getValue() != -1){
                                     Pair<OreGeneration, Integer> generationIntegerPair = savedData.getListVeinOre().get(pairCords);
                                     OreGeneration generation = generationIntegerPair.getKey();
-                                    if (generation.getOreTypeColor() == 0)
-                                        multiset.add(MapColor.IRON, 100);
-                                    else if (generation.getOreTypeColor() == 1)
-                                        multiset.add(MapColor.BROWN, 100);
-                                    else if (generation.getOreTypeColor() == 2)
-                                        multiset.add(MapColor.DIAMOND, 100);
-                                    else if (generation.getOreTypeColor() == 3)
-                                        multiset.add(MapColor.RED, 100);
-                                    else if (generation.getOreTypeColor() == 4)
-                                        multiset.add(MapColor.BLACK, 100);
-                                    else if (generation.getOreTypeColor() == 5)
-                                        multiset.add(MapColor.GOLD, 100);
-                                    else if (generation.getOreTypeColor() == 6)
-                                        multiset.add(MapColor.STONE, 100);
-                                    else if (generation.getOreTypeColor() == 7)
-                                        multiset.add(MapColor.CYAN, 100);
-                                    else
-                                        multiset.add(MapColor.WHITE_STAINED_HARDENED_CLAY);
+                                    if(generation.getOreTypeColor() == 0) multiset.add(MapColor.IRON, 100);
+                                    else if(generation.getOreTypeColor() == 1) multiset.add(MapColor.BROWN, 100);
+                                    else if(generation.getOreTypeColor() == 2) multiset.add(MapColor.DIAMOND, 100);
+                                    else if(generation.getOreTypeColor() == 3) multiset.add(MapColor.RED, 100);
+                                    else if(generation.getOreTypeColor() == 4) multiset.add(MapColor.BLACK, 100);
+                                    else if(generation.getOreTypeColor() == 5) multiset.add(MapColor.GOLD, 100);
+                                    else if(generation.getOreTypeColor() == 6) multiset.add(MapColor.STONE, 100);
+                                    else if(generation.getOreTypeColor() == 7) multiset.add(MapColor.CYAN, 100);
+                                    else multiset.add(MapColor.WHITE_STAINED_HARDENED_CLAY);
 
                                 }
-                                {
+                               {
                                     if (worldIn.provider.isNether()) {
                                         int l3 = k2 + l2 * 231871;
                                         l3 = l3 * l3 * 31287121 + l3 * 11;
@@ -180,28 +179,33 @@ public class ItemOreMap extends ItemMap implements IAdvancedItem {
                                     }
                                 }
                                 k3 = k3 / (i * i);
-                                double d2 = (d1 - d0) * 4.0D / (double) (i + 4) + ((double) (k1 + l1 & 1) - 0.5D) * 0.4D;
+                                double d2 = (d1 - d0) * 4.0D / (double)(i + 4) + ((double)(k1 + l1 & 1) - 0.5D) * 0.4D;
                                 int i5 = 1;
 
-                                if (d2 > 0.6D) {
+                                if (d2 > 0.6D)
+                                {
                                     i5 = 2;
                                 }
 
-                                if (d2 < -0.6D) {
+                                if (d2 < -0.6D)
+                                {
                                     i5 = 0;
                                 }
 
                                 MapColor mapcolor = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.AIR);
 
-                                if (mapcolor == MapColor.WATER) {
-                                    d2 = (double) k3 * 0.1D + (double) (k1 + l1 & 1) * 0.2D;
+                                if (mapcolor == MapColor.WATER)
+                                {
+                                    d2 = (double)k3 * 0.1D + (double)(k1 + l1 & 1) * 0.2D;
                                     i5 = 1;
 
-                                    if (d2 < 0.5D) {
+                                    if (d2 < 0.5D)
+                                    {
                                         i5 = 2;
                                     }
 
-                                    if (d2 > 0.9D) {
+                                    if (d2 > 0.9D)
+                                    {
                                         i5 = 0;
                                     }
                                 }
@@ -209,11 +213,13 @@ public class ItemOreMap extends ItemMap implements IAdvancedItem {
                                 d0 = d1;
 
 
-                                if (l1 >= 0 && i2 * i2 + j2 * j2 < j1 * j1 && (!flag1 || (k1 + l1 & 1) != 0)) {
+                                if (l1 >= 0 && i2 * i2 + j2 * j2 < j1 * j1 && (!flag1 || (k1 + l1 & 1) != 0))
+                                {
                                     byte b0 = data.colors[k1 + l1 * 128];
-                                    byte b1 = (byte) (mapcolor.colorIndex * 4 + i5);
+                                    byte b1 = (byte)(mapcolor.colorIndex * 4 + i5);
 
-                                    if (b0 != b1) {
+                                    if (b0 != b1)
+                                    {
                                         data.colors[k1 + l1 * 128] = b1;
                                         data.updateMapData(k1, l1);
                                         flag = true;

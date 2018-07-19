@@ -18,34 +18,36 @@ import ru.whitewarrior.survivaltech.util.NumberUtil;
 /**
  * Date: 2017-12-28.
  * Time: 15:00:16.
- *
  * @author WhiteWarrior
  */
 public class ItemRegister {
-    public static ItemBattery battery = new ItemBattery("smallbattery", NumberUtil.toK(10), 10);
-    public static Item wrench = new ItemToolWrench("wrench");
-    public static Item chainsaw = new ItemChainsaw("chainsaw");
-    public static ItemArmorPower armorchest = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.CHEST, "energy"), armorboots = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.FEET, "energy"), armorlegs = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.LEGS, "energy"), armorhelm = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.HEAD, "energy");
+	public static ItemBattery battery = new ItemBattery("smallbattery", NumberUtil.toK(10), 10);
+	public static Item wrench = new ItemToolWrench("wrench");
+	public static Item chainsaw = new ItemChainsaw("chainsaw");
+	public static ItemArmorPower armorchest = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.CHEST, "energy"),
+			 armorboots = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.FEET, "energy"),
+					 armorlegs = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.LEGS, "energy"),
+							 armorhelm = new BasicItemArmorModel(ArmorMaterial.DIAMOND, EntityEquipmentSlot.HEAD, "energy");
     public static ItemHammer ironHammer = new ItemHammer(Item.ToolMaterial.IRON, "iron_hammer", 200);
     public static ItemOreMap oreMap = new ItemOreMap("ore_map");
     public static ItemOreMapEmpty oreMapEmpty = new ItemOreMapEmpty("ore_map_empty");
 
 
-    public static void preInit() {
-        AdvancedRegistry.register(battery);
-        AdvancedRegistry.register(wrench);
-        AdvancedRegistry.register(chainsaw);
-        AdvancedRegistry.register(armorchest);
-        AdvancedRegistry.register(armorboots);
-        AdvancedRegistry.register(armorlegs);
-        AdvancedRegistry.register(armorhelm);
-        AdvancedRegistry.register(ironHammer);
-        AdvancedRegistry.register(oreMap);
-        AdvancedRegistry.register(oreMapEmpty);
-    }
+	public static void preInit() {
+		AdvancedRegistry.register(battery);
+		AdvancedRegistry.register(wrench);
+		AdvancedRegistry.register(chainsaw);
+		AdvancedRegistry.register(armorchest);
+		AdvancedRegistry.register(armorboots);
+		AdvancedRegistry.register(armorlegs);
+		AdvancedRegistry.register(armorhelm);
+		AdvancedRegistry.register(ironHammer);
+		AdvancedRegistry.register(oreMap);
+		AdvancedRegistry.register(oreMapEmpty);
+	}
 
 
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     public static void preInitClient() {
         GameMaterialRegister.registerItemToolModel(ironHammer);
         GameMaterialRegister.registerBasicItemModel(oreMap);
@@ -58,7 +60,7 @@ public class ItemRegister {
         });
     }
 
-    public static void initClient() {
+	public static void initClient() {
         AdvancedRegistry.registerRender(battery);
         AdvancedRegistry.registerRender(wrench);
         AdvancedRegistry.registerRender(chainsaw);

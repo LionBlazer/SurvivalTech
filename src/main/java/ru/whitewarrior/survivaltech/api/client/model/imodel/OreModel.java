@@ -16,9 +16,8 @@ import java.util.function.Function;
 public class OreModel implements IModel {
     ResourceLocation texture;
     ResourceLocation rockTexture = new ResourceLocation("blocks/stone");
-
     public OreModel(ResourceLocation texture) {
-        this.texture = texture;
+        this.texture=texture;
     }
 
     @Override
@@ -39,9 +38,9 @@ public class OreModel implements IModel {
         baker.begin(state, format);
 
         baker.setTexture(spriteStone);
-        baker.putTexturedCube(0, 0, 0, 0.5f);
+        baker.putTexturedCube(0,0,0,0.5f);
         baker.setTexture(spriteOre);
-        baker.putCube(0, 0, 0, 0.5f, spriteOre.getMaxU(), spriteOre.getMinU(), spriteOre.getMinV(), spriteOre.getMaxV());
+        baker.putCube(0,0,0,0.5f, spriteOre.getMaxU(), spriteOre.getMinU(), spriteOre.getMinV(), spriteOre.getMaxV());
         return new OreBakedModel(baker.bake(), bakedTextureGetter.apply(rockTexture));
     }
 

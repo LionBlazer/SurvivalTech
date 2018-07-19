@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 /**
  * Date: 2017-12-29. Time: 14:25:24.
- *
+ * 
  * @author WhiteWarrior
  */
 public abstract class TileEntityInventory extends TileEntityBlock {
@@ -31,6 +31,7 @@ public abstract class TileEntityInventory extends TileEntityBlock {
     }
 
 
+
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
@@ -39,59 +40,61 @@ public abstract class TileEntityInventory extends TileEntityBlock {
     @Nullable
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) handlerInventory : super.getCapability(capability, facing);
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)handlerInventory : super.getCapability(capability, facing);
     }
 
     public TileEntityInventory(String name) {
-        super(name);
-    }
-
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        for (int i = 0; i < getSlots(); ++i) {
+		super(name);
+	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        for (int i = 0; i < getSlots(); ++i)
+        {
             ItemStack itemstack = getStackInSlot(i);
 
-            if (!itemstack.isEmpty()) {
+            if (!itemstack.isEmpty())
+            {
                 InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemstack);
             }
         }
         worldIn.updateComparatorOutputLevel(pos, worldIn.getBlockState(pos).getBlock());
-        super.breakBlock(worldIn, pos, state);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
+		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
         handlerInventory.deserializeNBT(compound.getCompoundTag("inv"));
-    }
+	}
 
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
         compound.setTag("inv", handlerInventory.serializeNBT());
-        return compound;
-    }
+		return compound;
+	}
 
 
     public abstract int getSlots();
 
 
-    public ItemStack getStackInSlot(int slot) {
+    public ItemStack getStackInSlot(int slot){
         return handlerInventory.getStackInSlot(slot);
     }
 
-    public void setStackInSlot(int slot, ItemStack stack) {
+    public void setStackInSlot(int slot, ItemStack stack){
 
         handlerInventory.setStackInSlot(slot, stack);
 
     }
 
     public String getName() {
-        return name;
+	    return name;
     }
 
-    public boolean isUsableByPlayer(EntityPlayer playerIn) {
+    public boolean isUsableByPlayer(EntityPlayer playerIn){
         return true;
     }
 }

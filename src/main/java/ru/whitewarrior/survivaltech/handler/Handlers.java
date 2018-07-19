@@ -14,26 +14,25 @@ import ru.whitewarrior.survivaltech.handler.common.WorldGenEventHandler;
 /**
  * Date: 2018-01-10.
  * Time: 12:51:05.
- *
  * @author WhiteWarrior
  */
 public class Handlers {
 
-    public static void registerCommon() {
-        MinecraftForge.EVENT_BUS.register(new EnergyManagerEventHandler());
-        MinecraftForge.EVENT_BUS.register(new MultiBlockEventHandler());
-        NetworkRegistry.INSTANCE.registerGuiHandler(Core.INSTANCE, new BlockGuiHandler());
+	public static void registerCommon() {
+		MinecraftForge.EVENT_BUS.register(new EnergyManagerEventHandler());
+		MinecraftForge.EVENT_BUS.register(new MultiBlockEventHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(Core.INSTANCE, new BlockGuiHandler());
         MinecraftForge.TERRAIN_GEN_BUS.register(new WorldGenEventHandler());
         MinecraftForge.ORE_GEN_BUS.register(new WorldGenEventHandler());
-    }
+	}
 
-    @SideOnly(Side.CLIENT)
-    public static void registerClient() {
+	@SideOnly(Side.CLIENT)
+	public static void registerClient() {
         MinecraftForge.EVENT_BUS.register(new TickEventHandler());
-        MinecraftForge.EVENT_BUS.register(new OverlayEventHandler());
-        MinecraftForge.EVENT_BUS.register(new TextureEventHandler());
-        MinecraftForge.EVENT_BUS.register(new BlockEventHandler());
+		MinecraftForge.EVENT_BUS.register(new OverlayEventHandler());
+		MinecraftForge.EVENT_BUS.register(new TextureEventHandler());
+		MinecraftForge.EVENT_BUS.register(new BlockEventHandler());
         MinecraftForge.EVENT_BUS.register(new ModelEventHandler());
-    }
+	}
 
 }

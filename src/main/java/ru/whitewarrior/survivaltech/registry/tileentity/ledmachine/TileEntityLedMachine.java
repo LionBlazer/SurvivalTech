@@ -30,8 +30,7 @@ public class TileEntityLedMachine extends TileEntityEnergyStandard implements IT
     public byte red;
     public byte green;
     public byte blue;
-
-    public TileEntityLedMachine() {
+    public TileEntityLedMachine(){
         super("TileEntityLedMachine");
     }
 
@@ -47,9 +46,9 @@ public class TileEntityLedMachine extends TileEntityEnergyStandard implements IT
 
     @Override
     public void update() {
-        if (!world.isRemote) {
+        if(!world.isRemote){
 
-            if (getEnergyStoredMod() >= 10 && this.getStackInSlot(1).getItem() instanceof ItemArmorPower) {
+            if(getEnergyStoredMod() >= 10 && this.getStackInSlot(1).getItem() instanceof ItemArmorPower) {
 
                 byte r = NbtUtil.getTagCompound(getStackInSlot(1)).getByte("red");
                 byte g = NbtUtil.getTagCompound(getStackInSlot(1)).getByte("green");
@@ -101,25 +100,24 @@ public class TileEntityLedMachine extends TileEntityEnergyStandard implements IT
 
     @Override
     public Object getGuiContainer(EntityPlayer player) {
-        return new BasicGuiContainer((Container) this.getContainer(player), this, player) {
+        return new BasicGuiContainer((Container) this.getContainer(player), this, player){
             private EnergybarGuiElement energyBar;
             private TooltipGuiElement tooltip;
             private ButtonGuiElement buttonRed;
             private ButtonGuiElement buttonGreen;
             private ButtonGuiElement buttonBlue;
-
             @Override
             public void initGui() {
                 super.initGui();
                 energyBar = new EnergybarGuiElement(GuiUtil.getCoords(this)[0] + 8, GuiUtil.getCoords(this)[1] + 55, 50);
-                tooltip = new TooltipGuiElement(energyBar.getX() - GuiUtil.getCoords(this)[0], energyBar.getY() - GuiUtil.getCoords(this)[1], energyBar.getWidth(), energyBar.getHeight(), "");
-                buttonRed = new ButtonGuiElement(0, GuiUtil.getCoords(this)[0] + 40, GuiUtil.getCoords(this)[1] + 20, 30, 20, "red");
-                buttonGreen = new ButtonGuiElement(1, GuiUtil.getCoords(this)[0] + 80, GuiUtil.getCoords(this)[1] + 20, 30, 20, "green");
-                buttonBlue = new ButtonGuiElement(2, GuiUtil.getCoords(this)[0] + 120, GuiUtil.getCoords(this)[1] + 20, 30, 20, "blue");
+                tooltip = new TooltipGuiElement(energyBar.getX() - GuiUtil.getCoords(this)[0], energyBar.getY()-GuiUtil.getCoords(this)[1], energyBar.getWidth(), energyBar.getHeight(), "");
+                buttonRed = new ButtonGuiElement(0, GuiUtil.getCoords(this)[0]+40, GuiUtil.getCoords(this)[1]+20,30,20, "red");
+                buttonGreen = new ButtonGuiElement(1, GuiUtil.getCoords(this)[0]+80, GuiUtil.getCoords(this)[1]+20,30,20, "green");
+                buttonBlue = new ButtonGuiElement(2, GuiUtil.getCoords(this)[0]+120, GuiUtil.getCoords(this)[1]+20,30,20, "blue");
 
-                buttonRed.setColor((byte) 127, (byte) 0, (byte) 0);
-                buttonGreen.setColor((byte) 0, (byte) 127, (byte) 0);
-                buttonBlue.setColor((byte) 0, (byte) 0, (byte) 127);
+                buttonRed.setColor((byte) 127,(byte) 0,(byte) 0);
+                buttonGreen.setColor((byte) 0,(byte) 127,(byte) 0);
+                buttonBlue.setColor((byte) 0,(byte) 0,(byte) 127);
 
 
                 buttonList.add(buttonRed);
@@ -129,24 +127,27 @@ public class TileEntityLedMachine extends TileEntityEnergyStandard implements IT
 
             @Override
             protected void actionPerformed(GuiButton button) {
-                switch (button.id) {
-                    case 0: {
-                        if (GuiContainer.isShiftKeyDown()) {
-                            ((TileEntityLedMachine) this.inventory).red--;
-                        } else
-                            ((TileEntityLedMachine) this.inventory).red++;
+                switch (button.id){
+                    case 0 : {
+                        if(GuiContainer.isShiftKeyDown()){
+                            ((TileEntityLedMachine)this.inventory).red--;
+                        }
+                        else
+                            ((TileEntityLedMachine)this.inventory).red++;
                     }
-                    case 1: {
-                        if (GuiContainer.isShiftKeyDown()) {
-                            ((TileEntityLedMachine) this.inventory).green--;
-                        } else
-                            ((TileEntityLedMachine) this.inventory).green++;
+                    case 1 : {
+                        if(GuiContainer.isShiftKeyDown()){
+                            ((TileEntityLedMachine)this.inventory).green--;
+                        }
+                        else
+                            ((TileEntityLedMachine)this.inventory).green++;
                     }
-                    case 2: {
-                        if (GuiContainer.isShiftKeyDown()) {
-                            ((TileEntityLedMachine) this.inventory).blue--;
-                        } else
-                            ((TileEntityLedMachine) this.inventory).blue++;
+                    case 2 : {
+                        if(GuiContainer.isShiftKeyDown()){
+                            ((TileEntityLedMachine)this.inventory).blue--;
+                        }
+                        else
+                            ((TileEntityLedMachine)this.inventory).blue++;
                     }
                 }
             }
@@ -155,7 +156,7 @@ public class TileEntityLedMachine extends TileEntityEnergyStandard implements IT
             protected void init(int x, int y) {
                 addTextureSlots();
                 energyBar.draw((int) getEnergyStoredMod(), getMaxEnergyStoredMod());
-                tooltip.getTooltip().set(0, EnergyHelper.getColorForEnergy(getStorage().getEnergyStoredMod(), getStorage().getMaxEnergyStoredMod()).toString() + NumberUtil.rounding(getStorage().getEnergyStoredMod()) + " SEU");
+                tooltip.getTooltip().set(0, EnergyHelper.getColorForEnergy(getStorage().getEnergyStoredMod(), getStorage().getMaxEnergyStoredMod()).toString() + NumberUtil.rounding(getStorage().getEnergyStoredMod())+" SEU");
             }
 
             @Override

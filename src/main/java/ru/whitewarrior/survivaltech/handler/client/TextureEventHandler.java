@@ -15,7 +15,6 @@ import ru.whitewarrior.survivaltech.util.RayTraceResultUtil;
 /**
  * Date: 2018-01-10.
  * Time: 12:53:03.
- *
  * @author WhiteWarrior
  */
 public class TextureEventHandler {

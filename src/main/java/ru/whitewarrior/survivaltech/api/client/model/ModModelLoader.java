@@ -15,9 +15,9 @@ public class ModModelLoader implements ICustomModelLoader {
     public boolean accepts(ResourceLocation modelLocation) {
         String path = modelLocation.getResourcePath();
         String normalName = path;
-        if (normalName.contains("#"))
-            normalName = normalName.substring(0, normalName.indexOf("#"));
-        else if (normalName.contains("/")) {
+        if(normalName.contains("#"))
+            normalName =  normalName.substring(0, normalName.indexOf("#"));
+        else if(normalName.contains("/")) {
             normalName = normalName.substring(normalName.lastIndexOf("/") + 1);
         }
         ResourceLocation resourceLocation = new ResourceLocation(modelLocation.getResourceDomain(), normalName);
@@ -38,7 +38,7 @@ public class ModModelLoader implements ICustomModelLoader {
         return model;
     }
 
-    public static void registerModel(ResourceLocation resourceLocation, IModel model) {
+    public static void registerModel(ResourceLocation resourceLocation, IModel model){
         models.put(resourceLocation, model);
     }
 

@@ -27,21 +27,18 @@ public class BlockSmallArcFurnace extends BlockEnergyHorizontal {
         this.setHardness(0.7f);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH).withProperty(BlockSolidFuelGenerator.BURNING, false));
     }
-
     @Override
     public IBlockState getStateFromMeta(int meta) {
         int value = meta;
         boolean isBurn = false;
         EnumFacing enumfacing = EnumFacing.values()[value >> 1];//0100
         value -= (enumfacing.ordinal() << 1);
-        if (value == 1)
-            isBurn = true;
+        if(value == 1) isBurn = true;
         return this.getDefaultState().withProperty(BlockHorizontal.FACING, enumfacing).withProperty(BlockSolidFuelGenerator.BURNING, isBurn);
     }
-
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, BlockSolidFuelGenerator.BURNING, BlockHorizontal.FACING);
+        return new BlockStateContainer(this, BlockSolidFuelGenerator.BURNING, BlockHorizontal.FACING );
     }
 
     @Override
@@ -50,7 +47,6 @@ public class BlockSmallArcFurnace extends BlockEnergyHorizontal {
             return 10;
         return 0;
     }
-
     @Override
     public int getMetaFromState(IBlockState state) {
         int value = state.getValue(BlockHorizontal.FACING).ordinal();
@@ -73,7 +69,7 @@ public class BlockSmallArcFurnace extends BlockEnergyHorizontal {
     @Override
     public EnumFacing[] getInputFacing(IBlockAccess world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
-        return new EnumFacing[]{state.getValue(BlockHorizontal.FACING).getOpposite()};
+        return new EnumFacing[] { state.getValue(BlockHorizontal.FACING).getOpposite()};
     }
 
     @Override

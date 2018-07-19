@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * Date: 2017-12-25.
  * Time: 12:46:52.
- *
  * @author WhiteWarrior
  */
 public class BasicGameMaterial {
@@ -53,11 +52,11 @@ public class BasicGameMaterial {
         return nugget;
     }
 
-    public void addHammer(ItemHammer hammer) {
+    public void addHammer(ItemHammer hammer){
         itemsMaterial.add(hammer);
     }
 
-    public void addChunk(Item chunk) {
+    public void addChunk(Item chunk){
         itemsMaterial.add(chunk);
     }
 

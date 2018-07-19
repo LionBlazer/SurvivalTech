@@ -1,12 +1,12 @@
 {
-  "parent": "block/orientable",
-  "textures": {
-    "particle": "st:block/mechanism/energyconverter/icon2",
-    "up": "st:block/mechanism/energyconverter/icon2",
-    "down": "st:block/mechanism/energyconverter/icon2",
-    "north": "st:block/mechanism/energyconverter/icon1",
-    "east": "st:block/mechanism/energyconverter/icon4",
-    "south": "st:block/mechanism/energyconverter/icon3",
-    "west": "st:block/mechanism/energyconverter/icon4"
-  }
+    "parent": "block/orientable",
+    "textures": {
+		"particle": "st:block/mechanism/energyconverter/icon2",
+        "up": "st:block/mechanism/energyconverter/icon2",
+		"down": "st:block/mechanism/energyconverter/icon2",
+        "north": "st:block/mechanism/energyconverter/icon1",
+        "east": "st:block/mechanism/energyconverter/icon4",
+        "south": "st:block/mechanism/energyconverter/icon3",
+        "west": "st:block/mechanism/energyconverter/icon4"
+    }
 }

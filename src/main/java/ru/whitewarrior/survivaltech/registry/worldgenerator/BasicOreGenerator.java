@@ -23,6 +23,7 @@ public class BasicOreGenerator implements IWorldGenerator {
                     int k = z & 15;
 
 
+
                     ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[j >> 4];
 
 
@@ -36,7 +37,7 @@ public class BasicOreGenerator implements IWorldGenerator {
 
                 }
             }
-            // chunk.generateSkylightMap();
+           // chunk.generateSkylightMap();
 
         }
     }

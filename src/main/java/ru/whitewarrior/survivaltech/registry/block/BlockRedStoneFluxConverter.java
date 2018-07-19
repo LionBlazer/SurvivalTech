@@ -31,9 +31,12 @@ public class BlockRedStoneFluxConverter extends BlockEnergyHorizontal {
     @Nullable
     @Override
     public TileEntityBlock createTileEntity(World world, IBlockState state) {
-        try {
-            Class.forName("cofh.redstoneflux.api.IEnergyReceiver");
-        } catch (ClassNotFoundException e) {
+        try
+        {
+            Class.forName("cofh.redstoneflux.api.IEnergyReceiver" );
+        }
+        catch( ClassNotFoundException e )
+        {
             return null;
         }
         return (TileEntityBlock) WrapperUtil.createTileRfConvertr();
@@ -50,7 +53,6 @@ public class BlockRedStoneFluxConverter extends BlockEnergyHorizontal {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public boolean allOutputInputFacing(IBlockAccess world, BlockPos pos) {
         // TODO Auto-generated method stub

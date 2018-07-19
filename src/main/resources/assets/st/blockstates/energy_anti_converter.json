@@ -1,19 +1,8 @@
 {
-  "variants": {
-    "facing=north": {
-      "model": "st:energy_anti_converter"
-    },
-    "facing=south": {
-      "model": "st:energy_anti_converter",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "st:energy_anti_converter",
-      "y": 270
-    },
-    "facing=east": {
-      "model": "st:energy_anti_converter",
-      "y": 90
+    "variants": {
+        "facing=north": { "model": "st:energy_anti_converter" },
+        "facing=south": { "model": "st:energy_anti_converter", "y": 180 },
+        "facing=west":  { "model": "st:energy_anti_converter", "y": 270 },
+        "facing=east":  { "model": "st:energy_anti_converter", "y": 90 }
     }
-  }
 }

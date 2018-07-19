@@ -17,13 +17,12 @@ public class OreGeneration {
     private int ySize;
     private byte oreTypeColor;
     private OreGenerationType generationType;
-
     public OreGeneration(OreGenerationType generationType, int generationYSize, float spawnChance, Pair... blocks) {
         this.ySize = generationYSize;
         this.spawnChance = spawnChance;
         this.generationType = generationType;
-        if (blocks.length > 0)
-            list.addAll(Arrays.asList((Pair<IBlockState, Float>[]) blocks));
+        if(blocks.length > 0)
+            list.addAll(Arrays.asList((Pair<IBlockState, Float>[])blocks));
     }
 
     public OreGeneration(OreGenerationType generationType, int generationYSize, float spawnChance, byte oreTypeColor, Pair... blocks) {
@@ -31,8 +30,8 @@ public class OreGeneration {
         this.spawnChance = spawnChance;
         this.generationType = generationType;
         this.oreTypeColor = oreTypeColor;
-        if (blocks.length > 0)
-            list.addAll(Arrays.asList((Pair<IBlockState, Float>[]) blocks));
+        if(blocks.length > 0)
+            list.addAll(Arrays.asList((Pair<IBlockState, Float>[])blocks));
     }
 
     public void setOreTypeColor(byte oreTypeColor) {
@@ -51,11 +50,11 @@ public class OreGeneration {
         return list;
     }
 
-    public void writeToNbt(NBTTagCompound compound) {
+    public void writeToNbt(NBTTagCompound compound){
         compound.setInteger("size", list.size());
-        for (int i = 0; i < list.size(); i++) {
+        for(int i = 0; i < list.size(); i++){
             compound.setString("pairState_" + i, list.get(i).getKey().getBlock().getRegistryName().toString());
-            compound.setFloat("change_" + i, list.get(i).getValue());
+            compound.setFloat("change_"+i, list.get(i).getValue());
         }
         compound.setFloat("changeGeneration", spawnChance);
         compound.setInteger("ySize", ySize);
@@ -63,10 +62,10 @@ public class OreGeneration {
         compound.setByte("oreTypeColor", oreTypeColor);
     }
 
-    public void readFromNbt(NBTTagCompound compound) {
+    public void readFromNbt(NBTTagCompound compound){
         int size = compound.getInteger("size");
         list.clear();
-        for (int i = 0; i < size; i++) {
+        for(int i = 0; i < size; i++) {
             String blockRegName = compound.getString("pairState_" + i);
             float change = compound.getFloat("change_" + i);
             ResourceLocation regName = new ResourceLocation(blockRegName);

@@ -15,16 +15,16 @@ public class BlockChangeTileEntityPacket extends SimplePacket {
         buf().writeInt(blockPos.getZ());
         buf().writeInt(fieldIndex);
 
-        if (value instanceof Integer) {
+        if(value instanceof Integer){
             buf().writeShort(0); // id
             buf().writeInt((Integer) value);
-        } else if (value instanceof Boolean) {
+        } else if(value instanceof Boolean){
             buf().writeShort(1); // id
             buf().writeBoolean((Boolean) value);
-        } else if (value instanceof Byte) {
+        } else if(value instanceof Byte){
             buf().writeShort(2); // id
             buf().writeByte((Byte) value);
-        } else if (value instanceof String) {
+        } else if(value instanceof String){
             buf().writeShort(3); // id
             buf().writeInt(((String) value).getBytes().length);
             buf().writeBytes(((String) value).getBytes());
@@ -40,38 +40,34 @@ public class BlockChangeTileEntityPacket extends SimplePacket {
         int blockZ = buf().readInt();
         int fieldIndex = buf().readInt();
         short id = buf().readShort();
-        if (id == -1)
-            return;
+        if(id == -1) return;
         Object value = null;
 
-        switch (id) {
-            case 0: {
+        switch (id){
+            case 0 : {
                 value = buf().readInt();
                 break;
             }
-            case 1: {
+            case 1 : {
                 value = buf().readBoolean();
                 break;
             }
-            case 2: {
+            case 2 : {
                 value = buf().readByte();
                 break;
             }
-            case 3: {
+            case 3 : {
                 int length = buf().readInt();
                 value = new String(buf().readBytes(length).array());
                 break;
             }
         }
-        if (value == null)
-            return;
+        if(value == null) return;
 
-        if (player.getEntityWorld().getTileEntity(new BlockPos(blockX, blockY, blockZ)) == null || !(player.getEntityWorld().getTileEntity(new BlockPos(blockX, blockY, blockZ)) instanceof TileEntityBlock))
-            return;
-        TileEntityBlock blockTile = (TileEntityBlock) player.getEntityWorld().getTileEntity(new BlockPos(blockX, blockY, blockZ));
+        if(player.getEntityWorld().getTileEntity(new BlockPos(blockX, blockY, blockZ)) == null || !(player.getEntityWorld().getTileEntity(new BlockPos(blockX, blockY, blockZ)) instanceof TileEntityBlock)) return;
+        TileEntityBlock blockTile = (TileEntityBlock)player.getEntityWorld().getTileEntity(new BlockPos(blockX, blockY, blockZ));
 
-        if (!blockTile.canClientModifyField(id))
-            return;
+        if(!blockTile.canClientModifyField(id)) return;
         try {
             blockTile.getClass().getDeclaredFields()[id].set(blockTile, value);
         } catch (IllegalAccessException e) {

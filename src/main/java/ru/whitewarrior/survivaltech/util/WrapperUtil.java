@@ -5,11 +5,6 @@ import ru.whitewarrior.survivaltech.registry.tileentity.redstonefluxconverter.Ti
 import ru.whitewarrior.survivaltech.registry.tileentity.redstonefluxconverter.TileEntityRedStoneFluxConverter;
 
 public class WrapperUtil {
-    public static TileEntity createTileRfConvertr() {
-        return new TileEntityRedStoneFluxConverter();
-    }
-
-    public static TileEntity createTileRfAntiConvertr() {
-        return new TileEntityRedStoneFluxAntiConverter();
-    }
+    public static TileEntity createTileRfConvertr(){return new TileEntityRedStoneFluxConverter();}
+    public static TileEntity createTileRfAntiConvertr(){return new TileEntityRedStoneFluxAntiConverter();}
 }

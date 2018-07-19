@@ -20,8 +20,7 @@ import java.util.function.Function;
 public class ItemToolModel implements IModel {
     final ResourceLocation texture;
     ResourceLocation textureStick = new ResourceLocation("items/stick");
-
-    public ItemToolModel(ResourceLocation texture) {
+    public ItemToolModel(ResourceLocation texture){
         this.texture = texture;
     }
 
@@ -42,7 +41,7 @@ public class ItemToolModel implements IModel {
         TextureAtlasSprite texture = bakedTextureGetter.apply(this.texture);
         TextureAtlasSprite textureStick = bakedTextureGetter.apply(this.textureStick);
         List<BakedQuad> quads = new ArrayList<>();
-        quads.addAll(new ItemLayerModel(ImmutableList.of(this.textureStick, this.texture)).bake(state, format, bakedTextureGetter).getQuads(null, null, 0));
+        quads.addAll(new ItemLayerModel(ImmutableList.of( this.textureStick, this.texture)).bake(state, format, bakedTextureGetter).getQuads(null, null, 0));
         return new ItemToolBakedModel(quads, texture);
     }
 }

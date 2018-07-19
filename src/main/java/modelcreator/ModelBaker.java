@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author WhiteWarrior
  * @author LionBlazer
- */
+ * */
 public class ModelBaker {
     public static final ModelBaker INSTANCE = new ModelBaker();
 
@@ -25,13 +25,12 @@ public class ModelBaker {
     private boolean readyForUse;
     private boolean alreadyBuilding;
 
-    private ModelBaker() {
+    private ModelBaker(){
 
     }
 
-    public ModelBaker begin(IModelState state, VertexFormat format) {
-        if (readyForUse || alreadyBuilding)
-            throw new ModelBakerException("Already bake!");
+    public ModelBaker begin(IModelState state, VertexFormat format){
+        if(readyForUse || alreadyBuilding) throw new ModelBakerException("Already bake!");
         this.currentState = state;
         this.currentFormat = format;
         builder = ImmutableList.builder();
@@ -39,20 +38,21 @@ public class ModelBaker {
         return this;
     }
 
-    public ModelBaker setTexture(TextureAtlasSprite texture) {
-        if (!readyForUse)
-            throw new ModelBakerException("Not ready to put quad!");
+    public ModelBaker setTexture(TextureAtlasSprite texture){
+        if(!readyForUse) throw new ModelBakerException("Not ready to put quad!");
         this.texture = texture;
         return this;
     }
 
-    public ModelBaker putQuad(float x0, float y0, float z0, float u0, float v0, float x1, float y1, float z1, float u1, float v1, float x2, float y2, float z2, float u2, float v2, float x3, float y3, float z3, float u3, float v3, EnumFacing side) {
-        if (!readyForUse)
-            throw new ModelBakerException("Not ready to put quad!");
+    public ModelBaker putQuad(float x0, float y0, float z0, float u0, float v0,
+                          float x1, float y1, float z1, float u1, float v1,
+                          float x2, float y2, float z2, float u2, float v2,
+                          float x3, float y3, float z3, float u3, float v3, EnumFacing side){
+        if(!readyForUse) throw new ModelBakerException("Not ready to put quad!");
         alreadyBuilding = true;
         QuadBuilder builder = QuadBuilder.INSTANCE;
         builder.begin(currentState, currentFormat, 0, side);
-        if (texture != null) {
+        if(texture != null) {
             builder.setTexture(texture);
             builder.tex(u0, v0).putVertex(x0, y0, z0);
             builder.tex(u1, v1).putVertex(x1, y1, z1);
@@ -68,44 +68,73 @@ public class ModelBaker {
         return this;
     }
 
-    public ModelBaker putQuad(float offsetX, float offsetY, float offsetZ, float scaleX, float scaleY, float scaleZ, float uMin, float uMax, float vMin, float vMax, EnumFacing rotate) {
-        switch (rotate) {
+    public ModelBaker putQuad(float offsetX, float offsetY, float offsetZ, float scaleX, float scaleY, float scaleZ, float uMin, float uMax, float vMin, float vMax, EnumFacing rotate){
+        switch (rotate){
             case NORTH:
-                putQuad(offsetX + 0.5f - scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f - scaleZ, uMin, vMax, offsetX + 0.5f - scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f - scaleZ, uMin, vMin, offsetX + 0.5f + scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f - scaleZ, uMax, vMin, offsetX + 0.5f + scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f - scaleZ, uMax, vMax, EnumFacing.NORTH);
+                putQuad(
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f-scaleZ, uMin, vMax,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f-scaleZ, uMin, vMin,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f-scaleZ, uMax, vMin,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f-scaleZ, uMax, vMax, EnumFacing.NORTH
+                );
                 break;
             case SOUTH:
-                putQuad(offsetX + 0.5f + scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f + scaleZ, uMin, vMax, offsetX + 0.5f + scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f + scaleZ, uMin, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f + scaleZ, uMax, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f + scaleZ, uMax, vMax, EnumFacing.SOUTH);
+                putQuad(
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f+scaleZ, uMin, vMax,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f+scaleZ, uMin, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f+scaleZ, uMax, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f+scaleZ, uMax, vMax, EnumFacing.SOUTH
+                );
                 break;
             case EAST:
-                putQuad(offsetX + 0.5f + scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f - scaleZ, uMin, vMax, offsetX + 0.5f + scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f - scaleZ, uMin, vMin, offsetX + 0.5f + scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f + scaleZ, uMax, vMin, offsetX + 0.5f + scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f + scaleZ, uMax, vMax, EnumFacing.EAST);
+                putQuad(
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f-scaleZ, uMin, vMax,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f-scaleZ, uMin, vMin,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f+scaleZ, uMax, vMin,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f+scaleZ, uMax, vMax, EnumFacing.EAST
+                );
                 break;
             case WEST:
-                putQuad(offsetX + 0.5f - scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f + scaleZ, uMin, vMax, offsetX + 0.5f - scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f + scaleZ, uMin, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f - scaleZ, uMax, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f - scaleZ, uMax, vMax, EnumFacing.WEST);
+                putQuad(
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f+scaleZ, uMin, vMax,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f+scaleZ, uMin, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f-scaleZ, uMax, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f-scaleZ, uMax, vMax,EnumFacing.WEST
+                );
                 break;
             case DOWN:
-                putQuad(offsetX + 0.5f - scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f - scaleZ, uMin, vMax, offsetX + 0.5f + scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f - scaleZ, uMin, vMin, offsetX + 0.5f + scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f + scaleZ, uMax, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f - scaleY, offsetZ + 0.5f + scaleZ, uMax, vMax, EnumFacing.DOWN);
+                putQuad(
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f-scaleZ, uMin, vMax,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f-scaleZ, uMin, vMin,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f+scaleZ, uMax, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f-scaleY, offsetZ + 0.5f+scaleZ, uMax, vMax, EnumFacing.DOWN
+                );
                 break;
             case UP:
-                putQuad(offsetX + 0.5f + scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f + scaleZ, uMin, vMax, offsetX + 0.5f + scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f - scaleZ, uMin, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f - scaleZ, uMax, vMin, offsetX + 0.5f - scaleX, offsetY + 0.5f + scaleY, offsetZ + 0.5f + scaleZ, uMax, vMax, EnumFacing.UP);
+                putQuad(
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f+scaleZ, uMin, vMax,
+                        offsetX + 0.5f+scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f-scaleZ, uMin, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f-scaleZ, uMax, vMin,
+                        offsetX + 0.5f-scaleX, offsetY + 0.5f+scaleY, offsetZ + 0.5f+scaleZ, uMax, vMax, EnumFacing.UP
+                );
                 break;
         }
         return this;
     }
 
-    public ModelBaker putQuad(BakedQuad quad) {
+    public ModelBaker putQuad(BakedQuad quad){
         builder.add(quad);
-        alreadyBuilding = true;
+        alreadyBuilding=true;
         return this;
     }
 
-    public ModelBaker putQuads(Collection<UnpackedBakedQuad> quad) {
+    public ModelBaker putQuads(Collection<UnpackedBakedQuad> quad){
         builder.addAll(quad);
         return this;
     }
 
-    public ModelBaker putTexturedCube(float offsetX, float offsetY, float offsetZ, float size) {
-        if (texture == null)
-            throw new ModelBakerException("No texture!");
+    public ModelBaker putTexturedCube(float offsetX, float offsetY, float offsetZ, float size){
+        if(texture == null) throw new ModelBakerException("No texture!");
         putCube(offsetX, offsetY, offsetZ, size, texture.getMinU(), texture.getMaxU(), /*Author - LionBlazer*/ texture.getMinV(), texture.getMaxV());
         return this;
     }
@@ -121,9 +150,8 @@ public class ModelBaker {
         return this;
     }
 
-    public List<BakedQuad> bake() {
-        if (!alreadyBuilding)
-            throw new ModelBakerException("Not baked!");
+    public List<BakedQuad> bake(){
+        if(!alreadyBuilding) throw new ModelBakerException("Not baked!");
         readyForUse = false;
         alreadyBuilding = false;
         texture = null;

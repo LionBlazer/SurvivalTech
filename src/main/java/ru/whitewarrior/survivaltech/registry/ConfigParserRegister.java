@@ -8,7 +8,7 @@ import ru.whitewarrior.survivaltech.registry.tileentity.smallarcfurnace.recipe.S
 import java.util.List;
 
 public class ConfigParserRegister {
-    public static void init(FMLInitializationEvent event) {
+    public static void init(FMLInitializationEvent event){
         List<SmallArcFurnaceRecipe> recipesSAF = RecipeParser.parseRecipeSmallArcFurnace(CommonProxy.configRecipeArcFurnace);
         SmallArcFurnaceRecipe.RECIPES.addAll(recipesSAF);
     }

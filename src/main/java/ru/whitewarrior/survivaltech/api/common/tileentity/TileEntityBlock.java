@@ -14,74 +14,74 @@ import net.minecraft.world.World;
 
 /**
  * Date: 2017-12-29. Time: 13:10:02.
- *
+ * 
  * @author WhiteWarrior
  */
 public abstract class TileEntityBlock extends TileEntity {
-    String name;
-    protected boolean stateUpdate;
-
-    public boolean canClientModifyField(int id) {
+	String name;
+	protected boolean stateUpdate;
+	
+	public boolean canClientModifyField(int id){
         return false;
     }
 
-    protected void updateState() {
-        this.stateUpdate = true;
-    }
+	protected void updateState() {
+        this.stateUpdate=true;
+	}
+	
+	public TileEntityBlock() {
+		
+	}
 
-    public TileEntityBlock() {
-
-    }
-
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
-
-    public TileEntityBlock(String name) {
+	@Override
+	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+		return oldState.getBlock() != newState.getBlock();
+	}
+	
+	public TileEntityBlock(String name) {
         this.name = name;
-    }
+	}
+	
+	
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
 
+	}
+	
+	public void onBlockActivated(IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		
+	}
 
-    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 
-    }
+	}
 
-    public void onBlockActivated(IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-
-    }
-
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-
-    }
-
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return state;
-    }
-
-    public void updateVars() {
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		return state;
+	}
+	
+	public void updateVars() {
         this.markDirty();
-        IBlockState iblockstate = this.world.getBlockState(pos);
-        world.notifyBlockUpdate(pos, iblockstate, iblockstate, 3);
-    }
+		IBlockState iblockstate = this.world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, iblockstate, iblockstate, 3);
+	}
 
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(this.pos, this.getBlockMetadata(), this.getUpdateTag());
-    }
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(this.pos, this.getBlockMetadata(), this.getUpdateTag());
+	}
 
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        handleUpdateTag(pkt.getNbtCompound());
-    }
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+		handleUpdateTag(pkt.getNbtCompound());
+	}
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return this.writeToNBT(new NBTTagCompound());
+	}
 
-    @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
+	@Override
+	public void handleUpdateTag(NBTTagCompound tag) {
         this.readFromNBT(tag);
-    }
+	}
 }

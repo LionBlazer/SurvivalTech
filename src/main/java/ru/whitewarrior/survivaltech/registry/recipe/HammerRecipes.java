@@ -16,7 +16,6 @@ import java.util.List;
 public class HammerRecipes extends ShapelessRecipes implements IRecipe {
     ItemStack stackInput;
     ItemStack stackOutput;
-
     public HammerRecipes(ItemStack stackInput, ItemStack stackOutput) {
         super("", new ItemStack(BlockRegister.copperCable), NonNullList.create());
         this.stackInput = stackInput;
@@ -66,7 +65,7 @@ public class HammerRecipes extends ShapelessRecipes implements IRecipe {
 
     @Override
     public boolean canFit(int width, int height) {
-        return width * height > 1;
+        return width * height >1;
     }
 
     @Override
@@ -78,24 +77,24 @@ public class HammerRecipes extends ShapelessRecipes implements IRecipe {
     public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
         NonNullList<ItemStack> nonnulllist = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
 
-        for (int i = 0; i < nonnulllist.size(); ++i) {
+        for (int i = 0; i < nonnulllist.size(); ++i)
+        {
             ItemStack itemstack = inv.getStackInSlot(i);
             nonnulllist.set(i, net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack));
         }
 
         return nonnulllist;
     }
-
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> nonNullList = NonNullList.create();
         nonNullList.add(Ingredient.fromStacks(stackInput));
         List<Ingredient> ingredients = new ArrayList<>();
-        for (ItemStack itemStack : OreDictionary.getOres("hammer")) {
+        for(ItemStack itemStack : OreDictionary.getOres("hammer")){
             ingredients.add(Ingredient.fromStacks(itemStack));
         }
         nonNullList.add(Ingredient.merge(ingredients));
-        //  nonNullList.add(Ingredient.fromStacks((ItemStack[]) OreDictionary.getOres("hammer").toArray()));
+      //  nonNullList.add(Ingredient.fromStacks((ItemStack[]) OreDictionary.getOres("hammer").toArray()));
         return nonNullList;
     }
 

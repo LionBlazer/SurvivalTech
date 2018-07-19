@@ -10,7 +10,7 @@ public class TickEventHandler {
     public static long TICKER = -1;
 
     @SubscribeEvent
-    public void tick(TickEvent.ClientTickEvent event) {
+    public void tick(TickEvent.ClientTickEvent event){
         TICKER++;
     }
 }

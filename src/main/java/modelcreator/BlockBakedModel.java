@@ -20,7 +20,7 @@ public class BlockBakedModel implements IBakedModel {
     VertexFormat format;
     IModelState state;
 
-    public BlockBakedModel(List<BakedQuad> bakedQuads, TextureAtlasSprite textureParticle, VertexFormat format, IModelState state) {
+    public BlockBakedModel(List<BakedQuad> bakedQuads, TextureAtlasSprite textureParticle, VertexFormat format, IModelState state){
         this.bakedQuads = bakedQuads;
         this.textureParticle = textureParticle;
         this.format = format;

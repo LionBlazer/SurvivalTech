@@ -13,10 +13,9 @@ import net.minecraftforge.common.model.IModelState;
 import java.util.Collection;
 import java.util.function.Function;
 
-public class BlockModel implements IModel {
+public class BlockModel implements IModel{
     final ResourceLocation loc;
-
-    public BlockModel(ResourceLocation loc) {
+    public BlockModel(ResourceLocation loc){
         this.loc = loc;
     }
 
@@ -31,7 +30,7 @@ public class BlockModel implements IModel {
         //привязываем текстурку
         baker.setTexture(sprite);
         //создаем куб размером 0.5 - это полная величина, т.е. куб будет размером с полноценный блок(1 метр)
-        baker.putTexturedCube(0, 0, 0, 0.5f);
+        baker.putTexturedCube(0,0,0,0.5f);
         return new BlockBakedModel(/*Испекаем нашу модель*/baker.bake(), bakedTextureGetter.apply(loc), format, state);
     }
 

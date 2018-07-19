@@ -29,29 +29,31 @@ public class WorldGenEventHandler {
             OreGenSavedData data = WorldSavedDataUtil.get(event.getWorld(), "ore_gen_data", OreGenSavedData.class);
             Pair<OreGeneration, Integer> generation = null;
             int yPos = 0;
-            Pair<Integer, Integer> pair = new Pair(event.getChunkX() / 4, event.getChunkZ() / 4);
-            if (data.getListVeinOre().containsKey(pair)) {
+            Pair<Integer, Integer> pair = new Pair(event.getChunkX()/4, event.getChunkZ()/4);
+            if (data.getListVeinOre().containsKey(pair)){
                 generation = data.getListVeinOre().get(pair);
             }
 
 
             if (generation != null) {
-                if (generation.getValue() == -1)
+                if(generation.getValue() == -1)
                     return;
                 yPos = generation.getValue();
-            } else {
+            }
+            else {
                 OreGeneration generationOre = WorldGeneratorRegister.getListGen().get(event.getRand().nextInt(WorldGeneratorRegister.getListGen().size()));
                 yPos = event.getRand().nextInt(30);
                 generation = new Pair<>(generationOre, yPos);
-                if (event.getRand().nextFloat() / WorldGeneratorRegister.getListGen().size() > generation.getKey().getSpawnChance()) {
-                    data.getListVeinOre().put(new Pair<>(event.getChunkX() / 4, event.getChunkZ() / 4), new Pair<>(generation.getKey(), -1));
+                if(event.getRand().nextFloat()/WorldGeneratorRegister.getListGen().size() > generation.getKey().getSpawnChance())
+                {
+                    data.getListVeinOre().put(new Pair<>(event.getChunkX()/4, event.getChunkZ()/4), new Pair<>(generation.getKey(), -1));
                     data.markDirty();
                     return;
                 }
             }
             long start = System.currentTimeMillis();
             int ySize = generation.getKey().getYSize();
-            data.getListVeinOre().put(new Pair<>(event.getChunkX() / 4, event.getChunkZ() / 4), generation);
+            data.getListVeinOre().put(new Pair<>(event.getChunkX()/4, event.getChunkZ()/4), generation);
             data.markDirty();
             Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
 
@@ -89,8 +91,8 @@ public class WorldGenEventHandler {
     }
 
     @SubscribeEvent
-    public void event2(OreGenEvent.GenerateMinable event) {
-        if (event.getType() == OreGenEvent.GenerateMinable.EventType.IRON) {
+    public void event2(OreGenEvent.GenerateMinable event){
+        if(event.getType() == OreGenEvent.GenerateMinable.EventType.IRON){
             event.setResult(Event.Result.DENY);
         }
     }

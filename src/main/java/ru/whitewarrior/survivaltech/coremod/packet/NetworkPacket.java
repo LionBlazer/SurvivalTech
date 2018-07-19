@@ -12,6 +12,7 @@ import java.lang.annotation.Target;
 @SuppressWarnings("unused")
 public @interface NetworkPacket {
     /**
+     *
      * @return The side to which this packet will be sent
      */
     Side value();

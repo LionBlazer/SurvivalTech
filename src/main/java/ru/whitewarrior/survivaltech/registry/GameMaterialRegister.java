@@ -22,17 +22,17 @@ import ru.whitewarrior.survivaltech.registry.item.ItemHammer;
 
 /**
  * Date: 2017-12-27. Time: 9:44:39.
- *
+ * 
  * @author WhiteWarrior
  */
 public class GameMaterialRegister {
-    public static BasicGameMaterial copper = new BasicGameMaterial("copper", 1, 1);
+	public static BasicGameMaterial copper = new BasicGameMaterial("copper", 1, 1);
     public static BasicGameMaterial small_iron = new BasicGameMaterial("iron_small", 0.6f, 1, false, false);
     public static BasicGameMaterial tin = new BasicGameMaterial("tin", 0.6f, 1, true, true);
     public static BasicGameMaterial gold = new BasicGameMaterial("gold", 0.6f, 1, false, false);
     public static BasicGameMaterial redstone = new BasicGameMaterial("redstone", 0.7f, 2, false, false);
 
-    public static void preInit() {
+	public static void preInit() {
         Item.ToolMaterial copperToolMaterial = EnumHelper.addToolMaterial("copper", 1, 100, 1, 2, 1);
         Item.ToolMaterial tinToolMaterial = EnumHelper.addToolMaterial("tin", 1, 80, 1, 2, 1);
         tin.setToolMaterial(tinToolMaterial);
@@ -58,20 +58,21 @@ public class GameMaterialRegister {
         gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_gold", 0.6f, 0.5f, 2, 0, 0, "gold"));
 
 
+
         AdvancedRegistry.register(copper);
-        AdvancedRegistry.register(tin);
+		AdvancedRegistry.register(tin);
         AdvancedRegistry.register(small_iron);
         AdvancedRegistry.register(gold);
     }
 
-    public static void initClient() {
-        AdvancedRegistry.registerRender(copper);
-        AdvancedRegistry.registerRender(tin);
-        AdvancedRegistry.registerRender(small_iron);
-        AdvancedRegistry.registerRender(gold);
-    }
+	public static void initClient() {
+	    AdvancedRegistry.registerRender(copper);
+	    AdvancedRegistry.registerRender(tin);
+	    AdvancedRegistry.registerRender(small_iron);
+	    AdvancedRegistry.registerRender(gold);
+	}
 
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModModelLoader.registerModel(copper.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/chalcopyrite")));
         ModModelLoader.registerModel(copper.getOresBlock().get(1).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/malachite")));
@@ -97,14 +98,15 @@ public class GameMaterialRegister {
         ModModelLoader.registerModel(small_iron.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_iron")));
 
     }
-
     @SideOnly(Side.CLIENT)
-    public static void registerBasicItemModel(Item item) {
-        ModModelLoader.registerModel(item.getRegistryName(), new ItemModel(new ResourceLocation(item.getRegistryName().getResourceDomain(), "item/".concat(((IAdvancedItem) item).getItemType().getPrefix()).concat("/").concat(item.getRegistryName().getResourcePath().substring(0, item.getRegistryName().getResourcePath().length() - ((IAdvancedItem) item).getItemType().getPrefix().length() - 1)))));
+    public static void registerBasicItemModel(Item item){
+        ModModelLoader.registerModel(item.getRegistryName(), new ItemModel(new ResourceLocation(item.getRegistryName().getResourceDomain(),
+                "item/".concat(((IAdvancedItem)item).getItemType().getPrefix()).concat("/").concat(item.getRegistryName().getResourcePath().substring(0,item.getRegistryName().getResourcePath().length() - ((IAdvancedItem)item).getItemType().getPrefix().length()-1)))));
     }
 
     @SideOnly(Side.CLIENT)
-    public static void registerItemToolModel(Item item) {
-        ModModelLoader.registerModel(item.getRegistryName(), new ItemToolModel(new ResourceLocation(item.getRegistryName().getResourceDomain(), "item/".concat(((IAdvancedItem) item).getItemType().getPrefix()).concat("/").concat(item.getRegistryName().getResourcePath().substring(0, item.getRegistryName().getResourcePath().length() - ((IAdvancedItem) item).getItemType().getPrefix().length() - 1)))));
+    public static void registerItemToolModel(Item item){
+        ModModelLoader.registerModel(item.getRegistryName(), new ItemToolModel(new ResourceLocation(item.getRegistryName().getResourceDomain(),
+                "item/".concat(((IAdvancedItem)item).getItemType().getPrefix()).concat("/").concat(item.getRegistryName().getResourcePath().substring(0,item.getRegistryName().getResourcePath().length() - ((IAdvancedItem)item).getItemType().getPrefix().length()-1)))));
     }
 }

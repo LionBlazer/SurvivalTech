@@ -10,37 +10,38 @@ import ru.whitewarrior.survivaltech.proxy.CommonProxy;
 /**
  * Date: 2017-12-23.
  * Time: 14:02:45.
- *
  * @author WhiteWarrior
  */
 
 @Mod(modid = Constants.MODID, name = Constants.NAME, version = Constants.VERSION)
 public class Core {
-    @Mod.Instance
-    public static Core INSTANCE;
+	@Mod.Instance
+	public static Core INSTANCE;
 
-    @SidedProxy(clientSide = Constants.clientSide, serverSide = Constants.serverSide)
-    public static CommonProxy proxy;
+	@SidedProxy(clientSide = Constants.clientSide, serverSide = Constants.serverSide)
+	public static CommonProxy proxy;
 
 
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        //    int dq = Acessor.doGet();
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event){
+//	    int dq = Acessor.doGet();
         proxy.preInit(event);
-    }
-    //	public static void hookInMethod(int localvar1){
-    //        System.out.println("Core.hookInMethod");
-    //        System.out.println(localvar1);
-    //    }
+	}
 
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
-        proxy.init(event);
-    }
+	//public static boolean hookInMethod(int localvar1){
+   //     System.out.println("Core.hookInMethod");
+   //     System.out.println(localvar1);
+   //     return false;
+  //  }
 
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit(event);
-    }
-
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.init(event);
+	}
+	
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		proxy.postInit(event);
+	}
+	
 }

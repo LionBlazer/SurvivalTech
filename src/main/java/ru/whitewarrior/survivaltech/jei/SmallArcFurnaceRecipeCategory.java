@@ -23,10 +23,9 @@ public class SmallArcFurnaceRecipeCategory implements IRecipeCategory<SmallArcFu
     private final IDrawableStatic bg;
     IGuiHelper h;
     SmallArcFurnaceRecipeWrapper recipes;
-
     public SmallArcFurnaceRecipeCategory(IGuiHelper h) {
         this.h = h;
-        bg = h.createDrawable(new ResourceLocation(Constants.MODID, "textures/gui/inventory/jei/arc_furnace.png"), 10, 10, 160, 104);  // Объявление background'а.
+        bg =h.createDrawable(new ResourceLocation(Constants.MODID, "textures/gui/inventory/jei/arc_furnace.png"), 10, 10, 160, 104);  // Объявление background'а.
     }
 
     @Override
@@ -41,7 +40,7 @@ public class SmallArcFurnaceRecipeCategory implements IRecipeCategory<SmallArcFu
 
     @Override
     public void drawExtras(Minecraft minecraft) {
-        minecraft.fontRenderer.drawStringWithShadow(LocalizationUtil.readFromLang("info.time") + ": " + (recipes.getTime() / 20f) + " " + LocalizationUtil.readFromLang("info.sec"), 0, 60, 0xffffffff);
+        minecraft.fontRenderer.drawStringWithShadow(LocalizationUtil.readFromLang("info.time")+": " + (recipes.getTime()/20f)+" " + LocalizationUtil.readFromLang("info.sec"), 0, 60, 0xffffffff);
     }
 
     @Override

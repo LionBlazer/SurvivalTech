@@ -8,7 +8,7 @@ import ru.whitewarrior.survivaltech.coremod.packet.NetworkPacket;
 
 @NetworkPacket(Side.CLIENT)
 public class SpawnPointParticlePacket extends SimplePacket {
-    public SpawnPointParticlePacket(int count, EnumParticleTypes particleType, float x, float y, float z, float xSpeed, float ySpeed, float zSpeed) {
+    public SpawnPointParticlePacket(int count, EnumParticleTypes particleType,  float x, float y, float z, float xSpeed, float ySpeed, float zSpeed){
         buf().writeInt(count);
         buf().writeInt(particleType.ordinal());
 
@@ -21,8 +21,8 @@ public class SpawnPointParticlePacket extends SimplePacket {
         buf().writeFloat(zSpeed);
     }
 
-    public SpawnPointParticlePacket(EnumParticleTypes particleType, float x, float y, float z, float xSpeed, float ySpeed, float zSpeed) {
-        this(1, particleType, x, y, z, xSpeed, ySpeed, zSpeed);
+    public SpawnPointParticlePacket(EnumParticleTypes particleType, float x, float y, float z, float xSpeed, float ySpeed, float zSpeed){
+       this(1, particleType, x, y, z, xSpeed, ySpeed, zSpeed);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class SpawnPointParticlePacket extends SimplePacket {
         float ySpeed = buf().readFloat();
         float zSpeed = buf().readFloat();
         player.world.spawnParticle(EnumParticleTypes.values()[particleOriginalType], x, y, z, xSpeed, ySpeed, zSpeed);
-        for (int i = 0; i < count - 1; i++) {
-            player.world.spawnParticle(EnumParticleTypes.values()[particleOriginalType], x, y, z, xSpeed + Math.random() / 5f, ySpeed + Math.random() / 5f, zSpeed + Math.random() / 5f);
+        for(int i = 0; i < count - 1; i++){
+            player.world.spawnParticle(EnumParticleTypes.values()[particleOriginalType], x, y, z, xSpeed + Math.random()/5f, ySpeed+ Math.random()/5f, zSpeed+ Math.random()/5f);
         }
     }
 }

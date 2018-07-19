@@ -13,20 +13,19 @@ import ru.whitewarrior.survivaltech.registry.tileentity.toolrepairer.TileEntityT
 /**
  * Date: 2017-12-29.
  * Time: 16:07:44.
- *
  * @author WhiteWarrior
  */
 public class TileEntityRegister {
 
-    public static void postInit() {
-        GameRegistry.registerTileEntity(TileEntitySolidFuelGenerator.class, "TileEntitySolidFuelGenerator");
-        GameRegistry.registerTileEntity(TileEntitySmallEnergyStorage.class, "TileEntitySmallEnergyStorage");
-        GameRegistry.registerTileEntity(TileEntityToolRepairer.class, "TileEntityToolRepairer");
-        GameRegistry.registerTileEntity(TileEntityFluidTank.class, "TileEntityFluidTank");
+	public static void postInit() {
+		GameRegistry.registerTileEntity(TileEntitySolidFuelGenerator.class, "TileEntitySolidFuelGenerator");
+		GameRegistry.registerTileEntity(TileEntitySmallEnergyStorage.class, "TileEntitySmallEnergyStorage");
+		GameRegistry.registerTileEntity(TileEntityToolRepairer.class, "TileEntityToolRepairer");
+		GameRegistry.registerTileEntity(TileEntityFluidTank.class, "TileEntityFluidTank");
         GameRegistry.registerTileEntity(TileEntityLedMachine.class, "TileEntityLedMachine");
         GameRegistry.registerTileEntity(TileEntitySmallArcFurnace.class, "TileEntitySmallArcFurnace");
         GameRegistry.registerTileEntity(TileEntityRedStoneFluxConverter.class, "TileEntityRedStoneFluxConverter");
         GameRegistry.registerTileEntity(TileEntityRedStoneFluxAntiConverter.class, "TileEntityRedStoneFluxAntiConverter");
-    }
+	}
 
 }

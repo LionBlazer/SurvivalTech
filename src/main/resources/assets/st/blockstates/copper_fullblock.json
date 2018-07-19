@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "normal": {
-      "model": "st:copper_fullblock"
-    }
-  }
+	"variants": {
+		"normal":{
+			"model":"st:copper_fullblock" 
+		}
+	}
 }

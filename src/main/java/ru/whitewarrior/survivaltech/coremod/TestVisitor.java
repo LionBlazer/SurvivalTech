@@ -18,21 +18,17 @@ public class TestVisitor extends ClassVisitor {
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
         //Этот кусок кода служит для того чтобы коструктор не изменялся
-        if (name.equals("<init>"))
-            return super.visitMethod(access, name, desc, signature, exceptions);
+        if(name.equals("<init>") || name.equals("<clinit>")) return super.visitMethod(access,name,desc,signature,exceptions);
         return new MethodVisitor(Opcodes.ASM5, super.visitMethod(access, name, desc, signature, exceptions)) {
             @Override
             public void visitCode() {
-
-            }
-
-            @Override
-            public void visitLineNumber(int line, Label start) {
-                if (line == 8) {
-                    super.visitVarInsn(Opcodes.ILOAD, 0);
-                    super.visitMethodInsn(Opcodes.INVOKESTATIC, "ru/whitewarrior/survivaltech/Core", "hookInMethod", "(I)V", false);
-                }
-                super.visitLineNumber(line, start);
+                super.visitFieldInsn(Opcodes.GETSTATIC, "ru/whitewarrior/survivaltech/coremod/Acessor", "staticVar", "I");
+                super.visitMethodInsn(Opcodes.INVOKESTATIC, "ru/whitewarrior/survivaltech/Core", "hookInMethod", "(I)Z", false);
+                Label label = new Label();
+                super.visitJumpInsn(Opcodes.IFNE, label);
+                super.visitIntInsn(Opcodes.BIPUSH, 100);
+                super.visitInsn(Opcodes.IRETURN);
+                super.visitLabel(label);
             }
         };
     }
