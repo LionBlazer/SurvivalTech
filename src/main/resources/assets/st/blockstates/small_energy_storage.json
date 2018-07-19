@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "st:small_energy_storage" },
+        "facing=south": { "model": "st:small_energy_storage", "y": 180 },
+        "facing=west":  { "model": "st:small_energy_storage", "y": 270 },
+        "facing=east":  { "model": "st:small_energy_storage", "y": 90 }
+    }
+}

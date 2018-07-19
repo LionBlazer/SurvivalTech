@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal":{
+			"model":"st:tin_fullblock" 
+		}
+	}
+}
