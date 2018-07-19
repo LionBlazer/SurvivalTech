@@ -42,9 +42,9 @@ public class WorldGenEventHandler {
             }
             else {
                 OreGeneration generationOre = WorldGeneratorRegister.getListGen().get(event.getRand().nextInt(WorldGeneratorRegister.getListGen().size()));
-                yPos = event.getRand().nextInt(30);
+                yPos = generationOre.getyMin() + event.getRand().nextInt(generationOre.getyMax() - generationOre.getyMin());
                 generation = new Pair<>(generationOre, yPos);
-                if(event.getRand().nextFloat()/WorldGeneratorRegister.getListGen().size() > generation.getKey().getSpawnChance())
+                if(event.getRand().nextFloat()/WorldGeneratorRegister.getListGen().size() / 4f > generation.getKey().getSpawnChance())
                 {
                     data.getListVeinOre().put(new Pair<>(event.getChunkX()/4, event.getChunkZ()/4), new Pair<>(generation.getKey(), -1));
                     data.markDirty();
@@ -59,7 +59,6 @@ public class WorldGenEventHandler {
 
             boolean isRotateX = event.getChunkX() >= 0 ? Math.abs(event.getChunkX() % 3) == 1 : Math.abs(event.getChunkX() % 3) == 2;
             boolean isRotateZ = event.getChunkZ() >= 0 ? Math.abs(event.getChunkZ() % 3) == 1 : Math.abs(event.getChunkZ() % 3) == 2;
-
             for (int x = 0; x < 16; x++) {
                 for (int z = 0; z < 16; z++) {
                     for (int y = 0; y < ySize; y++) {
@@ -69,7 +68,7 @@ public class WorldGenEventHandler {
                             Pair<IBlockState, Float> pairToGenerate = generation.getKey().getList().get(event.getRand().nextInt(generation.getKey().getList().size()));
                             if (event.getRand().nextFloat() < pairToGenerate.getValue()) {
                                 int i = x & 15;
-                                int j = Math.max(50 - yPos - y, 0);
+                                int j = Math.max(yPos + y, 0);
                                 int k = z & 15;
                                 ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[j >> 4];
                                 if (extendedblockstorage == Chunk.NULL_BLOCK_STORAGE) {
@@ -85,7 +84,7 @@ public class WorldGenEventHandler {
                 }
             }
             long end = System.currentTimeMillis();
-            System.out.println(end - start);
+
         }
 
     }

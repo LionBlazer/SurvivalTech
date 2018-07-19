@@ -31,6 +31,7 @@ public class GameMaterialRegister {
     public static BasicGameMaterial tin = new BasicGameMaterial("tin", 0.6f, 1, true, true);
     public static BasicGameMaterial gold = new BasicGameMaterial("gold", 0.6f, 1, false, false);
     public static BasicGameMaterial redstone = new BasicGameMaterial("redstone", 0.7f, 2, false, false);
+    public static BasicGameMaterial diamond = new BasicGameMaterial("diamond", 1.4f, 2, false, false);
 
 	public static void preInit() {
         Item.ToolMaterial copperToolMaterial = EnumHelper.addToolMaterial("copper", 1, 100, 1, 2, 1);
@@ -56,6 +57,8 @@ public class GameMaterialRegister {
 
         gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "small_gold", 0.5f, 0.5f, 2, 0, 0, "gold"));
         gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_gold", 0.6f, 0.5f, 2, 0, 0, "gold"));
+        redstone.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "small_redstone", 0.8f, 0.5f, 2, 0, 0, "redstone"));
+        diamond.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_diamond", 1.4f, 1.2f, 2, 0, 0, "diamond"));
 
 
 
@@ -63,6 +66,8 @@ public class GameMaterialRegister {
 		AdvancedRegistry.register(tin);
         AdvancedRegistry.register(small_iron);
         AdvancedRegistry.register(gold);
+        AdvancedRegistry.register(redstone);
+        AdvancedRegistry.register(diamond);
     }
 
 	public static void initClient() {
@@ -70,6 +75,8 @@ public class GameMaterialRegister {
 	    AdvancedRegistry.registerRender(tin);
 	    AdvancedRegistry.registerRender(small_iron);
 	    AdvancedRegistry.registerRender(gold);
+	    AdvancedRegistry.registerRender(redstone);
+	    AdvancedRegistry.registerRender(diamond);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -82,6 +89,9 @@ public class GameMaterialRegister {
 
         ModModelLoader.registerModel(gold.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_gold")));
         ModModelLoader.registerModel(gold.getOresBlock().get(1).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/scattered_gold")));
+
+        ModModelLoader.registerModel(redstone.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_redstone")));
+        ModModelLoader.registerModel(diamond.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/scattered_diamond")));
 
 
         GameMaterialRegister.registerBasicItemModel(copper.getNugget());

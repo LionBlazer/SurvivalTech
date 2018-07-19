@@ -13,33 +13,48 @@ public class WorldGeneratorRegister {
 private static final List<OreGeneration> listGen = new ArrayList<>();
 
     public static void preInit(){
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.1f,
-                new Pair<>(GameMaterialRegister.copper.getOresBlock().get(0).getDefaultState(), 0.15f),
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.1f, 20,60,
+                new Pair<>(GameMaterialRegister.copper.getOresBlock().get(0).getDefaultState(), 0.045f),
                 new Pair<>(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(), 0.015f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.04f,
-                new Pair<>(GameMaterialRegister.copper.getOresBlock().get(1).getDefaultState(), 0.075f)
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.04f, 20,55,
+                new Pair<>(GameMaterialRegister.copper.getOresBlock().get(1).getDefaultState(), 0.035f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.02f,
-                new Pair<>(GameMaterialRegister.tin.getOresBlock().get(0).getDefaultState(), 0.07f),
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.02f, 20,50,
+                new Pair<>(GameMaterialRegister.tin.getOresBlock().get(0).getDefaultState(), 0.04f),
                 new Pair<>(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(), 0.012f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.04f,
-                new Pair<>(GameMaterialRegister.tin.getOresBlock().get(0).getDefaultState(), 0.07f),
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 0,0.04f, 20,45,
+                new Pair<>(GameMaterialRegister.tin.getOresBlock().get(0).getDefaultState(), 0.04f),
                 new Pair<>(GameMaterialRegister.tin.getOresBlock().get(1).getDefaultState(), 0.02f),
                 new Pair<>(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(), 0.012f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 6,0.04f,
-                new Pair<>(GameMaterialRegister.tin.getOresBlock().get(1).getDefaultState(), 0.04f),
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 15,(byte) 6,0.04f, 20,55,
+                new Pair<>(GameMaterialRegister.tin.getOresBlock().get(1).getDefaultState(), 0.03f),
                 new Pair<>(GameMaterialRegister.copper.getOresBlock().get(0).getDefaultState(), 0.02f)
         );
 
-        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 20,(byte) 7,0.06f,
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 20,(byte) 7,0.06f, 20,70,
                 new Pair<>(Blocks.IRON_ORE.getDefaultState(), 0.05f)
+        );
+
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 5,0.03f, 10,30,
+                new Pair<>(GameMaterialRegister.gold.getOresBlock().get(0).getDefaultState(), 0.01f),
+                new Pair<>(GameMaterialRegister.gold.getOresBlock().get(1).getDefaultState(), 0.02f)
+        );
+
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 8,(byte) 3,0.031f, 2,10,
+                new Pair<>(GameMaterialRegister.redstone.getOresBlock().get(0).getDefaultState(), 0.02f),
+                new Pair<>(Blocks.REDSTONE_ORE.getDefaultState(), 0.02f)
+        );
+
+        WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 8,(byte) 2,0.01f, 2,13,
+                new Pair<>(GameMaterialRegister.diamond.getOresBlock().get(0).getDefaultState(), 0.022f),
+                new Pair<>(Blocks.DIAMOND_ORE.getDefaultState(), 0.022f)
         );
     }
 
@@ -53,8 +68,8 @@ private static final List<OreGeneration> listGen = new ArrayList<>();
      * @param spawnChance the chance of generating ore, if the chance is equal to 1,
      *                    then each core ore will be generated exactly when it's her turn
      * */
-    public static void registerGeneration(OreGenerationType type, int generationYSize, byte mapColor, float spawnChance, Pair<IBlockState, Float>... blocks){
-        listGen.add(new OreGeneration(type, generationYSize, spawnChance, mapColor, blocks));
+    public static void registerGeneration(OreGenerationType type, int generationYSize, byte mapColor, float spawnChance, int minY, int maxY, Pair<IBlockState, Float>... blocks){
+        listGen.add(new OreGeneration(type, generationYSize, spawnChance,(short) minY, (short)maxY, mapColor, blocks));
     }
 
     public static List<OreGeneration> getListGen() {

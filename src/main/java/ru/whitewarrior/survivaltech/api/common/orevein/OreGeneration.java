@@ -15,21 +15,26 @@ public class OreGeneration {
     private List<Pair<IBlockState, Float>> list = new ArrayList<>();
     private float spawnChance;
     private int ySize;
+    private short yMin;
+    private short yMax;
     private byte oreTypeColor;
     private OreGenerationType generationType;
-    public OreGeneration(OreGenerationType generationType, int generationYSize, float spawnChance, Pair... blocks) {
+    public OreGeneration(OreGenerationType generationType, int generationYSize, float spawnChance, short yMin, short yMax, Pair... blocks) {
         this.ySize = generationYSize;
         this.spawnChance = spawnChance;
         this.generationType = generationType;
+        this.yMin = yMin;
+        this.yMax = yMax;
         if(blocks.length > 0)
             list.addAll(Arrays.asList((Pair<IBlockState, Float>[])blocks));
     }
 
-    public OreGeneration(OreGenerationType generationType, int generationYSize, float spawnChance, byte oreTypeColor, Pair... blocks) {
+    public OreGeneration(OreGenerationType generationType, int generationYSize, float spawnChance, short yMin, short yMax, byte oreTypeColor, Pair... blocks) {
         this.ySize = generationYSize;
         this.spawnChance = spawnChance;
         this.generationType = generationType;
         this.oreTypeColor = oreTypeColor;
+        this.yMax = yMax;
         if(blocks.length > 0)
             list.addAll(Arrays.asList((Pair<IBlockState, Float>[])blocks));
     }
@@ -60,6 +65,8 @@ public class OreGeneration {
         compound.setInteger("ySize", ySize);
         compound.setInteger("generationType", generationType.ordinal());
         compound.setByte("oreTypeColor", oreTypeColor);
+        compound.setShort("yMin", yMin);
+        compound.setShort("yMax", yMax);
     }
 
     public void readFromNbt(NBTTagCompound compound){
@@ -78,6 +85,16 @@ public class OreGeneration {
         spawnChance = compound.getFloat("changeGeneration");
         ySize = compound.getInteger("ySize");
         generationType = OreGenerationType.values()[compound.getInteger("generationType")];
+        yMin = compound.getShort("yMin");
+        yMax = compound.getShort("yMax");
+    }
+
+    public short getyMin() {
+        return yMin;
+    }
+
+    public short getyMax() {
+        return yMax;
     }
 
     public int getYSize() {

@@ -24,7 +24,7 @@ public class OreGenSavedData extends WorldSavedData {
             int posX = entryComp.getInteger("posX");
             int posZ = entryComp.getInteger("posZ");
             int posY = entryComp.getInteger("posY");
-            OreGeneration generation = new OreGeneration(OreGenerationType.MEDIUM, 0,-1f);
+            OreGeneration generation = new OreGeneration(OreGenerationType.MEDIUM, 0,-1f, (short) 0, (short) 100);
             generation.readFromNbt(entryComp);
             listVeinOre.put(new Pair<>(posX, posZ), new Pair<>(generation,posY));
         }
