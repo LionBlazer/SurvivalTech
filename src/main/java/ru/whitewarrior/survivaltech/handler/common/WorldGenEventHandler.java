@@ -91,7 +91,10 @@ public class WorldGenEventHandler {
 
     @SubscribeEvent
     public void event2(OreGenEvent.GenerateMinable event){
-        if(event.getType() == OreGenEvent.GenerateMinable.EventType.IRON){
+        if(event.getType() == OreGenEvent.GenerateMinable.EventType.IRON ||
+                event.getType() == OreGenEvent.GenerateMinable.EventType.DIAMOND
+                ||event.getType() == OreGenEvent.GenerateMinable.EventType.GOLD
+                ||event.getType() == OreGenEvent.GenerateMinable.EventType.REDSTONE){
             event.setResult(Event.Result.DENY);
         }
     }

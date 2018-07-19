@@ -170,6 +170,14 @@ public class MaterialRegister {
                         new ItemStack(GameMaterialRegister.small_iron.getItemsMaterial().get(0))
                 ), 200));
 
+        SmallArcFurnaceRecipe.RECIPES.add(new SmallArcFurnaceRecipe(
+                Arrays.asList(
+                        new ItemStack(GameMaterialRegister.diamond.getOresBlock().get(0))
+                ),
+                Arrays.asList(
+                        new ItemStack(Items.DIAMOND)
+                ), 80));
+
     }
 	
 

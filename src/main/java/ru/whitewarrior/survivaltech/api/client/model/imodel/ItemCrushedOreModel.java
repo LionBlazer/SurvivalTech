@@ -20,7 +20,6 @@ import java.util.function.Function;
 
 public class ItemCrushedOreModel implements IModel {
     final ResourceLocation texture;
-    ResourceLocation textureRock = new ResourceLocation(Constants.MODID, "item/crushed/rock");
     public ItemCrushedOreModel(ResourceLocation texture){
         this.texture = texture;
     }
@@ -41,7 +40,7 @@ public class ItemCrushedOreModel implements IModel {
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         TextureAtlasSprite texture = bakedTextureGetter.apply(this.texture);
         List<BakedQuad> quads = new ArrayList<>();
-        quads.addAll(new ItemLayerModel(ImmutableList.of( this.textureRock, this.texture)).bake(state, format, bakedTextureGetter).getQuads(null, null, 0));
+        quads.addAll(new ItemLayerModel(ImmutableList.of(new ResourceLocation(Constants.MODID,"item/crushed/stone"), this.texture)).bake(state, format, bakedTextureGetter).getQuads(null, null, 0));
         return new ItemToolBakedModel(quads, texture);
     }
 }

@@ -38,6 +38,10 @@ tile.chalcopyrite_ore.name=Chalcopyrite ore
 tile.iron_small_ore.name=Inclusions of iron ore
 tile.cassiterite_ore.name=Cassiterite ore
 tile.stannite_ore.name=Stannite ore
+tile.small_gold_ore.name=Inclusions of gold ore
+tile.small_redstone_ore.name=Inclusions of redstone ore
+tile.scattered_gold_ore.name=Scattered gold ore
+tile.scattered_diamond_ore.name=Scattered diamond ore
 
 //nugget
 item.copper_nugget.name=Copper nugget
@@ -51,6 +55,7 @@ item.copper_chunk.name=Copper chunk
 item.copper_small_chunk.name=Small copper chunk
 item.copper_chunk.name=Tin chunk
 item.copper_small_chunk.name=Small tin chunk
+item.gold_crushed.name=Сrushed gold ore
 
 //tool
 item.copper_hammer_tool.name=Copper hammer

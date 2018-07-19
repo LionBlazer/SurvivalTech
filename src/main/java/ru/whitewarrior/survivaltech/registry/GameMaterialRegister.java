@@ -105,7 +105,7 @@ public class GameMaterialRegister {
         GameMaterialRegister.registerBasicItemModel(tin.getItemsMaterial().get(0));
         GameMaterialRegister.registerBasicItemModel(tin.getItemsMaterial().get(1));
 
-        GameMaterialRegister.registerItemCrushedOreModel(gold.getCrushedOre());
+        GameMaterialRegister.registerBasicItemModel(gold.getCrushedOre());
         GameMaterialRegister.registerBasicItemModel(small_iron.getItemsMaterial().get(0));
 
         ModModelLoader.registerModel(small_iron.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_iron")));

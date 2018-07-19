@@ -38,6 +38,10 @@ tile.chalcopyrite_ore.name=Халькопиритовая руда
 tile.iron_small_ore.name=Вкрапление железной руды
 tile.cassiterite_ore.name=Касситеритовая руда
 tile.stannite_ore.name=Станниновая руда
+tile.small_gold_ore.name=Вкрапление золотой руды
+tile.small_redstone_ore.name=Вкрапление редстоуновой руды
+tile.scattered_gold_ore.name=Разбросанная золотая руда
+tile.scattered_diamond_ore.name=Разбросанная алмазыная руда
 
 //nugget
 item.copper_nugget.name=Кусочек меди
@@ -51,6 +55,7 @@ item.copper_chunk.name=Кусок меди
 item.copper_small_chunk.name=Маленький кусок меди
 item.tin_small_chunk.name=Маленький кусок олова
 item.tin_chunk.name=Кусок олова
+item.gold_crushed.name=Дробленная золотая руда
 
 //tool
 item.copper_hammer_tool.name=Медный молот
