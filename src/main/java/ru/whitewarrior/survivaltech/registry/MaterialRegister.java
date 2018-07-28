@@ -2,7 +2,6 @@ package ru.whitewarrior.survivaltech.registry;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -12,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.village.MerchantRecipe;
-import net.minecraft.village.MerchantRecipeList;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -26,7 +24,6 @@ import ru.whitewarrior.survivaltech.registry.tileentity.toolrepairer.recipe.Tool
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Date: 2017-12-29. Time: 19:18:16.
@@ -62,7 +59,7 @@ public class MaterialRegister {
         tinIngot.setRegistryName("tinIngot");
         ForgeRegistries.RECIPES.register(tinIngot);
 
-		fuel.put(Items.COAL, 100);
+		fuel.put(Items.COAL, 500);
 		fuel.put(Item.getItemFromBlock(Blocks.COAL_BLOCK), fuel.get(Items.COAL)*9);
 		SlotSolidFuel.itemsValidSet.add(Items.COAL);
 		SlotSolidFuel.itemsValidSet.add(Item.getItemFromBlock(Blocks.COAL_BLOCK));
@@ -103,14 +100,10 @@ public class MaterialRegister {
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"smallArcFurnace"), null, new ItemStack(BlockRegister.smallArcFurnace), "IWI", "CSC", "WCW", 'C', Blocks.COBBLESTONE, 'W', BlockRegister.copperCable, 'S', BlockRegister.smallStorage, 'I', Blocks.IRON_BLOCK);
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"toolRepairer"), null, new ItemStack(BlockRegister.toolRepairer), "Z Z", "SNS", "ZCZ", 'Z', Blocks.COBBLESTONE_WALL, 'C', BlockRegister.copperCable, 'S', new ItemStack(Blocks.STONE_SLAB, 1,3), 'N', Blocks.ANVIL);
 
-        VillagerRegistry.VillagerCareer cartographer = ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation("minecraft:librarian")).getCareer(1);
-        cartographer.addTrade(1, new EntityVillager.ITradeList() {
-            @Override
-            public void addMerchantRecipe(IMerchant merchant, MerchantRecipeList recipeList, Random random) {
+        GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"toolRepairer"), null, new ItemStack(BlockRegister.toolRepairer), "Z Z", "SNS", "ZCZ", 'Z', Blocks.COBBLESTONE_WALL, 'C', BlockRegister.copperCable, 'S', new ItemStack(Blocks.STONE_SLAB, 1,3), 'N', Blocks.ANVIL);
 
-                recipeList.add(new MerchantRecipe(new ItemStack(Items.EMERALD, 20),ItemOreMap.setupNewMap(merchant.getWorld(), random.nextInt(1000) - 500, random.nextInt(1000) - 500,(byte)2,true,true)));
-            }
-        });
+        VillagerRegistry.VillagerCareer cartographer = ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation("minecraft:librarian")).getCareer(1);
+        cartographer.addTrade(1, (EntityVillager.ITradeList) (merchant, recipeList, random) -> recipeList.add(new MerchantRecipe(new ItemStack(Items.EMERALD, 20),ItemOreMap.setupNewMap(merchant.getWorld(), random.nextInt(1000) - 500, random.nextInt(1000) - 500,(byte)2,true,true))));
         GameRegistry.addShapelessRecipe(new ResourceLocation(Constants.MODID,"copperIngot2"), null,new ItemStack(GameMaterialRegister.copper.getIngot(),9), Ingredient.fromItem(Item.getItemFromBlock(GameMaterialRegister.copper.getFullBlock())));
 
         SmallArcFurnaceRecipe.RECIPES.add(new SmallArcFurnaceRecipe(

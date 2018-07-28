@@ -3,7 +3,6 @@ package ru.whitewarrior.survivaltech.api.common.automatic;
 import net.minecraft.item.Item;
 import ru.whitewarrior.survivaltech.AdvancedRegistry;
 import ru.whitewarrior.survivaltech.api.common.automatic.block.BasicTypeBlock;
-import ru.whitewarrior.survivaltech.api.common.automatic.block.BasicTypeBlockCutout;
 import ru.whitewarrior.survivaltech.api.common.automatic.item.BasicTypeItem;
 import ru.whitewarrior.survivaltech.api.common.block.BlockType;
 import ru.whitewarrior.survivaltech.api.common.item.ItemType;
@@ -18,7 +17,7 @@ import java.util.List;
  * @author WhiteWarrior
  */
 public class BasicGameMaterial {
-    private List<BasicTypeBlockCutout> ores = new ArrayList<>();
+    private List<BasicTypeBlock> ores = new ArrayList<>();
     private List<Item> itemsMaterial = new ArrayList<>();
     private BasicTypeBlock fullBlock;
     private BasicTypeItem ingot;
@@ -37,7 +36,7 @@ public class BasicGameMaterial {
             ingot = new BasicTypeItem(materialName, ItemType.INGOT, 64, 0);
     }
 
-    public List<BasicTypeBlockCutout> getOresBlock() {
+    public List<BasicTypeBlock> getOresBlock() {
         return ores;
     }
 

@@ -4,7 +4,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.common.Loader;
 import org.lwjgl.util.vector.Vector3f;
 
 import javax.annotation.Nullable;
@@ -26,7 +25,7 @@ public class OreBakedModel implements IBakedModel {
 
     @Override
     public boolean isAmbientOcclusion() {
-        return !Loader.isModLoaded("optifine");
+        return true;
     }
 
     @Override

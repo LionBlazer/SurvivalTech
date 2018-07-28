@@ -14,7 +14,7 @@ import ru.whitewarrior.survivaltech.api.client.model.imodel.ItemModel;
 import ru.whitewarrior.survivaltech.api.client.model.imodel.ItemToolModel;
 import ru.whitewarrior.survivaltech.api.client.model.imodel.OreModel;
 import ru.whitewarrior.survivaltech.api.common.automatic.BasicGameMaterial;
-import ru.whitewarrior.survivaltech.api.common.automatic.block.BasicTypeBlockCutout;
+import ru.whitewarrior.survivaltech.api.common.automatic.block.BasicTypeBlock;
 import ru.whitewarrior.survivaltech.api.common.automatic.item.BasicTypeItem;
 import ru.whitewarrior.survivaltech.api.common.block.BlockType;
 import ru.whitewarrior.survivaltech.api.common.item.IAdvancedItem;
@@ -38,17 +38,17 @@ public class GameMaterialRegister {
         Item.ToolMaterial copperToolMaterial = EnumHelper.addToolMaterial("copper", 1, 100, 1, 2, 1);
         Item.ToolMaterial tinToolMaterial = EnumHelper.addToolMaterial("tin", 1, 80, 1, 2, 1);
         tin.setToolMaterial(tinToolMaterial);
-        tin.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "cassiterite", 1.4f, 1.2f, 2, 0, 0, "stannite"));
-        tin.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "stannite", 1.0f, 0.9f, 1, 0, 0, "stannite"));
+        tin.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "cassiterite", 1.4f, 1.2f, 2, 0, 0, "stannite"));
+        tin.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "stannite", 1.0f, 0.9f, 1, 0, 0, "stannite"));
         tin.addChunk(new BasicTypeItem("tin", ItemType.CHUNK, 4, 0));
         tin.addChunk(new BasicTypeItem("tin", ItemType.SMALL_CHUNK, 16, 0));
 
         copper.setToolMaterial(copperToolMaterial);
-        copper.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "chalcopyrite", 1, 0.8f, 1, 0, 0, "chalcopyrite"));
-        copper.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "malachite", 1.2f, 0.95f, 1, 0, 0, "malachite"));
+        copper.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "chalcopyrite", 1, 0.8f, 1, 0, 0, "chalcopyrite"));
+        copper.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "malachite", 1.2f, 0.95f, 1, 0, 0, "malachite"));
         copper.setNugget(new BasicTypeItem("copper", ItemType.NUGGET, 64, 0));
 
-        small_iron.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "iron_small", 0.6f, 0.8f, 1, 0, 0));
+        small_iron.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "iron_small", 0.6f, 0.8f, 1, 0, 0));
         small_iron.getItemsMaterial().add(new BasicTypeItem("slag", ItemType.MISCELLANEA, 32, 0));
         copper.addHammer(new ItemHammer(copper.getToolMaterial(), "copper_hammer", 100));
         copper.addChunk(new BasicTypeItem("copper", ItemType.CHUNK, 4, 0));
@@ -56,11 +56,11 @@ public class GameMaterialRegister {
         tinToolMaterial.setRepairItem(new ItemStack(tin.getIngot()));
         copperToolMaterial.setRepairItem(new ItemStack(copper.getIngot()));
 
-        gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "small_gold", 0.5f, 0.5f, 2, 0, 0, "gold"));
-        gold.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_gold", 0.6f, 0.5f, 2, 0, 0, "gold"));
+        gold.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "small_gold", 0.5f, 0.5f, 2, 0, 0, "gold"));
+        gold.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "scattered_gold", 0.6f, 0.5f, 2, 0, 0, "gold"));
         gold.setCrushedOre(new BasicTypeItem("gold", ItemType.CRUSHED_ORE, 32, 0));
-        redstone.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "small_redstone", 0.8f, 0.5f, 2, 0, 0, "redstone"));
-        diamond.getOresBlock().add(new BasicTypeBlockCutout(BlockType.ORE, "scattered_diamond", 1.4f, 1.2f, 2, 0, 0, "diamond"));
+        redstone.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "small_redstone", 0.8f, 0.5f, 2, 0, 0, "redstone"));
+        diamond.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "scattered_diamond", 1.4f, 1.2f, 2, 0, 0, "diamond"));
 
 
 

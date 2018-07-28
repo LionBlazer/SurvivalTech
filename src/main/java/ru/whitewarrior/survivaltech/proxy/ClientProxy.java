@@ -27,6 +27,7 @@ public class ClientProxy extends CommonProxy{
 		ItemRegister.initClient();
 		GameMaterialRegister.initClient();
 		RenderRegister.postInitClient();
+        EntityRegister.initClient();
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {

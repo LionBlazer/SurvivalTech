@@ -1,11 +1,9 @@
 package ru.whitewarrior.survivaltech.registry.ai;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.pathfinding.Path;
+import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.world.World;
 
 /**
@@ -32,9 +30,8 @@ public class EntityAIdig extends EntityAIBase {
 	 * Returns whether the EntityAIBase should begin execution.
 	 */
 	public boolean shouldExecute() {
-		BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
 
-		return this.entityWorld.getBlockState(blockpos.down()).getBlock() == Blocks.STONE;
+		return true;
 
 	}
 
@@ -45,6 +42,8 @@ public class EntityAIdig extends EntityAIBase {
 		this.eatingGrassTimer = 10;
 		this.entityWorld.setEntityState(this.grassEaterEntity, (byte) 10);
 		this.grassEaterEntity.getNavigator().clearPath();
+        grassEaterEntity.getNavigator().setPath(new Path(new PathPoint[]{new PathPoint(0,100,0)}), 1);
+       // grassEaterEntity.getNavigator().
 	}
 
 	/**
@@ -59,7 +58,7 @@ public class EntityAIdig extends EntityAIBase {
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
 	public boolean shouldContinueExecuting() {
-		return this.eatingGrassTimer > 0;
+		return false;
 	}
 
 	/**
@@ -74,20 +73,6 @@ public class EntityAIdig extends EntityAIBase {
 	 */
 	public void updateTask() {
 		this.eatingGrassTimer = Math.max(0, this.eatingGrassTimer - 1);
-		System.out.println("updateTask()");
-		if (this.eatingGrassTimer == 2) {
-			BlockPos blockpos = new BlockPos(this.grassEaterEntity.posX, this.grassEaterEntity.posY, this.grassEaterEntity.posZ);
-			BlockPos blockpos1 = blockpos.north();
-			for(EnumFacing facing : EnumFacing.VALUES) {
-				if(facing != EnumFacing.DOWN)
-					if (!this.entityWorld.isAirBlock(blockpos.offset(facing))) {
-						this.entityWorld.playEvent(2001, blockpos.offset(facing), Block.getIdFromBlock(Blocks.STONE));
-						this.entityWorld.setBlockState(blockpos.offset(facing), Blocks.AIR.getDefaultState(), 2);
-						continue;
-					}
-				
-			}
-			this.grassEaterEntity.eatGrassBonus();
-		}
+
 	}
 }

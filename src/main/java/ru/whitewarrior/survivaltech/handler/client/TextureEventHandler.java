@@ -1,11 +1,24 @@
 package ru.whitewarrior.survivaltech.handler.client;
 
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import ru.whitewarrior.survivaltech.api.client.model.imodel.OreModel;
+
 /**
  * Date: 2018-01-10.
  * Time: 12:53:03.
  * @author WhiteWarrior
  */
 public class TextureEventHandler {
+    @SubscribeEvent
+    public void event(TextureStitchEvent.Pre event) {
+        //event.getMap().registerSprite( new ResourceLocation("blocks/stone"));
+       // event.getMap().registerSprite(new ResourceLocation(Constants.MODID,"block/ore/scattered_gold"));
+
+        boolean d = event.getMap().setTextureEntry(OreModel.spriteStone);
+        System.out.println("TextureEventHandler.event");
+    }
+
 //    BlockPos oldpos;
 //
 //    @SubscribeEvent
