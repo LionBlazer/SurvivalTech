@@ -41,7 +41,7 @@ tile.stannite_ore.name=Станниновая руда
 tile.small_gold_ore.name=Вкрапление золотой руды
 tile.small_redstone_ore.name=Вкрапление редстоуновой руды
 tile.scattered_gold_ore.name=Разбросанная золотая руда
-tile.scattered_diamond_ore.name=Разбросанная алмазыная руда
+tile.scattered_diamond_ore.name=Разбросанная алмазная руда
 
 //nugget
 item.copper_nugget.name=Кусочек меди

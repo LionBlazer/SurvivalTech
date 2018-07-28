@@ -5,20 +5,21 @@ import net.minecraft.client.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.ResourceLocation;
-import ru.whitewarrior.survivaltech.Constants;
 
 import java.util.Collection;
 import java.util.function.Function;
 
 public class MultiTextureAtlasSprite extends TextureAtlasSprite
 {
-    private final ResourceLocation bucket = new ResourceLocation("blocks/stone");
-    private final ResourceLocation bucketCoverMask = new ResourceLocation(Constants.MODID,"block/ore/scattered_gold");
-    private final ImmutableList<ResourceLocation> dependencies = ImmutableList.of(bucket, bucketCoverMask);
+    private ResourceLocation texture1;
+    private ResourceLocation texture2;
+    private ImmutableList<ResourceLocation> dependencies;
 
-    public MultiTextureAtlasSprite(ResourceLocation resourceLocation)
-    {
-        super(resourceLocation.toString());
+    public MultiTextureAtlasSprite(ResourceLocation texture1, ResourceLocation texture2) {
+        super(texture1.toString().concat("_".concat(texture2.toString())));
+        this.texture1 = texture1;
+        this.texture2 = texture2;
+        dependencies = ImmutableList.of(this.texture1, this.texture2);
     }
 
     @Override
@@ -34,8 +35,8 @@ public class MultiTextureAtlasSprite extends TextureAtlasSprite
 
     @Override
     public boolean load(IResourceManager manager, ResourceLocation location, Function<ResourceLocation, TextureAtlasSprite> textureGetter) {
-        TextureAtlasSprite sprite = textureGetter.apply(bucket);
-        TextureAtlasSprite alphaMask = textureGetter.apply(bucketCoverMask);
+        TextureAtlasSprite sprite = textureGetter.apply(texture1);
+        TextureAtlasSprite alphaMask = textureGetter.apply(texture2);
         width = sprite.getIconWidth();
         height = sprite.getIconHeight();
         int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
