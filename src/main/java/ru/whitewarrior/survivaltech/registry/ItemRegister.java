@@ -1,11 +1,9 @@
 package ru.whitewarrior.survivaltech.registry;
 
-import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -52,12 +50,7 @@ public class ItemRegister {
         GameMaterialRegister.registerItemToolModel(ironHammer);
         GameMaterialRegister.registerBasicItemModel(oreMap);
         GameMaterialRegister.registerBasicItemModel(oreMapEmpty);
-        ModelLoader.setCustomMeshDefinition(oreMap, new ItemMeshDefinition() {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation("filled_map", "inventory");
-            }
-        });
+        ModelLoader.setCustomMeshDefinition(oreMap, stack -> new ModelResourceLocation("filled_map", "inventory"));
     }
 
 	public static void initClient() {

@@ -24,7 +24,6 @@ public class Core {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
-//	    int dq = Acessor.doGet();
         proxy.preInit(event);
 	}
 

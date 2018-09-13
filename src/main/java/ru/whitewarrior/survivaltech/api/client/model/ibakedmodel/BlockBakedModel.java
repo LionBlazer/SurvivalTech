@@ -9,11 +9,11 @@ import org.lwjgl.util.vector.Vector3f;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class OreBakedModel implements IBakedModel {
+public class BlockBakedModel implements IBakedModel {
     List<BakedQuad> quads;
     TextureAtlasSprite textureAtlasSprite;
 
-    public OreBakedModel(List<BakedQuad> quads, TextureAtlasSprite textureAtlasSprite){
+    public BlockBakedModel(List<BakedQuad> quads, TextureAtlasSprite textureAtlasSprite){
         this.quads = quads;
         this.textureAtlasSprite = textureAtlasSprite;
     }

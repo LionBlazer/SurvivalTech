@@ -2,7 +2,10 @@ package ru.whitewarrior.survivaltech.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraftforge.fml.common.Loader;
 import ru.whitewarrior.survivaltech.AdvancedRegistry;
+import ru.whitewarrior.survivaltech.api.client.model.ModModelLoader;
+import ru.whitewarrior.survivaltech.api.client.model.imodel.LaunchingPadModel;
 import ru.whitewarrior.survivaltech.api.common.automatic.block.network.conductor.BasicBlockCable;
 import ru.whitewarrior.survivaltech.api.common.block.BlockType;
 import ru.whitewarrior.survivaltech.registry.block.*;
@@ -24,8 +27,10 @@ public class BlockRegister {
     public static Block ledMachine = new BlockLedMachine(BlockType.MECHANISM, "led_machine");
     public static Block smallArcFurnace = new BlockSmallArcFurnace(BlockType.MECHANISM, "small_arc_furnace");
 
-    public static Block energyConverter = new BlockRedStoneFluxConverter(BlockType.MECHANISM, "energy_converter");
-    public static Block energyAntiConverter = new BlockRedStoneFluxAntiConverter(BlockType.MECHANISM, "energy_anti_converter");
+    public static Block launchingPad = new BlockLaunchingPad(BlockType.MECHANISM, "launching_pad");
+
+    public static Block energyConverter;
+    public static Block energyAntiConverter;
 
 	public static void preInit() {
 		AdvancedRegistry.register(copperCable);
@@ -37,9 +42,19 @@ public class BlockRegister {
 		AdvancedRegistry.register(fluidTank);
         AdvancedRegistry.register(ledMachine);
         AdvancedRegistry.register(smallArcFurnace);
-        AdvancedRegistry.register(energyConverter);
-        AdvancedRegistry.register(energyAntiConverter);
+        AdvancedRegistry.register(launchingPad);
+
+        if(Loader.isModLoaded("redstoneflux")) {
+            energyConverter = new BlockRedStoneFluxConverter(BlockType.MECHANISM, "energy_converter");
+            energyAntiConverter = new BlockRedStoneFluxAntiConverter(BlockType.MECHANISM, "energy_anti_converter");
+            AdvancedRegistry.register(energyConverter);
+            AdvancedRegistry.register(energyAntiConverter);
+        }
 	}
+
+    public static void preInitClient() {
+        ModModelLoader.registerModel(launchingPad.getRegistryName(), new LaunchingPadModel());
+    }
 	
 	public static void initClient() {
 		AdvancedRegistry.registerRender(copperCable);
@@ -53,5 +68,6 @@ public class BlockRegister {
         AdvancedRegistry.registerRender(smallArcFurnace);
         AdvancedRegistry.registerRender(energyConverter);
         AdvancedRegistry.registerRender(energyAntiConverter);
+        AdvancedRegistry.registerRender(launchingPad);
 	}
 }

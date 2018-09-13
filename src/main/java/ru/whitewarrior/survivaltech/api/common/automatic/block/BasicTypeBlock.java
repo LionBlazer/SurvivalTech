@@ -1,5 +1,6 @@
 package ru.whitewarrior.survivaltech.api.common.automatic.block;
 
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.oredict.OreDictionary;
 import ru.whitewarrior.survivaltech.api.common.IOreDictionaryObject;
 import ru.whitewarrior.survivaltech.api.common.block.BlockType;
@@ -23,6 +24,11 @@ public class BasicTypeBlock extends BasicBlock implements IAdvancedBlock, IOreDi
         if (type.getOreDictionary() != null)
             oreName = type.getOreDictionary() + TextUtil.firstUpperCase(oreDictionary);
         this.type = type;
+    }
+
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.SOLID;
     }
 
     @Override

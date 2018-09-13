@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.vertex.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
-import ru.whitewarrior.survivaltech.api.client.model.ibakedmodel.OreBakedModel;
+import ru.whitewarrior.survivaltech.api.client.model.ibakedmodel.BlockBakedModel;
 import ru.whitewarrior.survivaltech.api.client.texture.MultiTextureAtlasSprite;
 import ru.whitewarrior.survivaltech.handler.client.TextureEventHandler;
 
@@ -41,8 +41,8 @@ public class OreModel implements IModel {
         ModelBaker baker = ModelBaker.INSTANCE;
         baker.begin(state, format);
         baker.setTexture(spriteOre);
-        baker.putTexturedCube(0,0,0,0.5f);
-        return new OreBakedModel(baker.bake(), bakedTextureGetter.apply(rockTexture));
+        baker.putCube(0,0,0,0.5f, spriteOre.getMaxU(), spriteOre.getMinU(), spriteOre.getMinV(), spriteOre.getMaxV());
+        return new BlockBakedModel(baker.bake(), bakedTextureGetter.apply(rockTexture));
     }
 
 }

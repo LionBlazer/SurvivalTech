@@ -24,6 +24,7 @@ import ru.whitewarrior.api.Pair;
 import ru.whitewarrior.survivaltech.api.common.item.IAdvancedItem;
 import ru.whitewarrior.survivaltech.api.common.item.ItemType;
 import ru.whitewarrior.survivaltech.api.common.orevein.OreGeneration;
+import ru.whitewarrior.survivaltech.handler.common.WorldGenEventHandler;
 import ru.whitewarrior.survivaltech.registry.ItemRegister;
 import ru.whitewarrior.survivaltech.registry.worldsaveddata.OreGenSavedData;
 import ru.whitewarrior.survivaltech.util.WorldSavedDataUtil;
@@ -107,7 +108,7 @@ public class ItemOreMap extends ItemMap implements IAdvancedItem {
                                 int k3 = 0;
                                 double d1 = 0.0D;
 
-                                Pair<Integer, Integer> pairCords = new Pair<>(k2 /16 / 4, l2/16 / 4);
+                                Pair<Integer, Integer> pairCords = new Pair<>(k2 /16 / WorldGenEventHandler.getVeinX(), l2/16 / WorldGenEventHandler.getVeinY());
                                 if(savedData.getListVeinOre().containsKey(pairCords) && savedData.getListVeinOre().get(pairCords).getValue() != -1){
                                     Pair<OreGeneration, Integer> generationIntegerPair = savedData.getListVeinOre().get(pairCords);
                                     OreGeneration generation = generationIntegerPair.getKey();

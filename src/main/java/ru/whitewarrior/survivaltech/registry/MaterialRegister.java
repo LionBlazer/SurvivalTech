@@ -82,8 +82,8 @@ public class MaterialRegister {
         GameRegistry.addSmelting(GameMaterialRegister.copper.getItemsMaterial().get(1), new ItemStack(GameMaterialRegister.copper.getNugget(), 4), 0.1f);
         GameRegistry.addSmelting(GameMaterialRegister.copper.getOresBlock().get(1), new ItemStack(GameMaterialRegister.copper.getItemsMaterial().get(2), 3), 0.1f);
 
-        GameRegistry.addSmelting(GameMaterialRegister.gold.getOresBlock().get(0), new ItemStack(Items.GOLD_NUGGET, 7), 0.1f);
-        GameRegistry.addSmelting(GameMaterialRegister.redstone.getOresBlock().get(0), new ItemStack(Items.REDSTONE, 8), 0.1f);
+        GameRegistry.addSmelting(GameMaterialRegister.gold.getOresBlock().get(0), new ItemStack(Items.GOLD_NUGGET, 3), 0.1f);
+        GameRegistry.addSmelting(GameMaterialRegister.redstone.getOresBlock().get(0), new ItemStack(Items.REDSTONE, 2), 0.1f);
 
 
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"copperIngot1"), null, new ItemStack(GameMaterialRegister.copper.getIngot()), "TTT", "TTT", "TTT", 'T', "nuggetCopper");

@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy{
 		ShaderRegister.register();
         GameMaterialRegister.preInitClient();
         ItemRegister.preInitClient();
+        BlockRegister.preInitClient();
 	}
 
 	public void init(FMLInitializationEvent event) {

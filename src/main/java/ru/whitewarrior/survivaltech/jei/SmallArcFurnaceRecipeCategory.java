@@ -25,7 +25,7 @@ public class SmallArcFurnaceRecipeCategory implements IRecipeCategory<SmallArcFu
     SmallArcFurnaceRecipeWrapper recipes;
     public SmallArcFurnaceRecipeCategory(IGuiHelper h) {
         this.h = h;
-        bg =h.createDrawable(new ResourceLocation(Constants.MODID, "textures/gui/inventory/jei/arc_furnace.png"), 10, 10, 160, 104);  // Объявление background'а.
+        bg = h.createDrawable(new ResourceLocation(Constants.MODID, "textures/gui/inventory/jei/arc_furnace.png"), 10, 10, 160, 104);  // Объявление background'а.
     }
 
     @Override
