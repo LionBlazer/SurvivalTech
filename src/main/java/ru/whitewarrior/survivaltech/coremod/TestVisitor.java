@@ -1,18 +1,36 @@
 package ru.whitewarrior.survivaltech.coremod;
 
 import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.Label;
+import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import ru.whitewarrior.api.asm.AsmHelpVisitor;
 
-public class TestVisitor extends ClassVisitor {
+import java.util.HashMap;
+import java.util.Map;
+
+public class TestVisitor extends AsmHelpVisitor {
+    private Map<String, String> fields = new HashMap<>();
     public TestVisitor(ClassVisitor cv) {
-        super(Opcodes.ASM5, cv);
+        super(cv);
+    }
+
+    @Override
+    public void visitEnd() {
+        super.visitEnd();
+        System.out.println(fields);
     }
 
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
+        fields.clear();
         super.visit(version, access, name, signature, superName, interfaces);
+    }
+
+    @Override
+    public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
+        fields.put(name, desc);
+        return super.visitField(access, name, desc, signature, value);
     }
 
     @Override
@@ -22,13 +40,15 @@ public class TestVisitor extends ClassVisitor {
         return new MethodVisitor(Opcodes.ASM5, super.visitMethod(access, name, desc, signature, exceptions)) {
             @Override
             public void visitCode() {
-                super.visitFieldInsn(Opcodes.GETSTATIC, "ru/whitewarrior/survivaltech/coremod/Acessor", "staticVar", "I");
+                setMethodVisitor(this);
+
+                putFieldStatic("ru.whitewarrior.survivaltech.coremod.Acessor", "staticVar", "I");
                 super.visitMethodInsn(Opcodes.INVOKESTATIC, "ru/whitewarrior/survivaltech/Core", "hookInMethod", "(I)Z", false);
-                Label label = new Label();
-                super.visitJumpInsn(Opcodes.IFNE, label);
+
+                startBlock(Opcodes.IFNE);
                 super.visitIntInsn(Opcodes.BIPUSH, 100);
-                super.visitInsn(Opcodes.IRETURN);
-                super.visitLabel(label);
+                methodReturn(Opcodes.IRETURN);
+                endBlock();
             }
         };
     }

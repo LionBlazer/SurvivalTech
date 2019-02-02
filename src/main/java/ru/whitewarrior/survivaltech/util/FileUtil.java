@@ -14,13 +14,21 @@ public class FileUtil {
                 sb.append(buf, 0, amt);
                 amt = r.read(buf);
             }
+            r.close();
+            fis.close();
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
     }
-
+    public static void writeFile(File file, String context) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)){
+            fileOutputStream.write(context.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static String getFileContent(File file) {
         try {
             return getFileContent(new FileInputStream(file));

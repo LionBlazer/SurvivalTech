@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ru.whitewarrior.survivaltech.coremod.Acessor;
 import ru.whitewarrior.survivaltech.proxy.CommonProxy;
 
 /**
@@ -25,13 +26,16 @@ public class Core {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event){
         proxy.preInit(event);
+        int i = Acessor.doGet();
+        System.out.println(i);
 	}
 
-	//public static boolean hookInMethod(int localVar1){
-   //     System.out.println("Core.hookInMethod");
-   //     System.out.println(localVar1);
-   //     return false;
-  //  }
+	public static boolean hookInMethod(int localVar1){
+        System.out.println("Core.hookInMethod");
+        localVar1 = 0;
+        System.out.println(localVar1);
+        return false;
+    }
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {

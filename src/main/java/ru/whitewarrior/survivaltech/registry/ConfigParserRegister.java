@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ConfigParserRegister {
     public static void init(FMLInitializationEvent event){
-        List<SmallArcFurnaceRecipe> recipesSAF = RecipeParser.parseRecipeSmallArcFurnace(CommonProxy.configRecipeArcFurnace);
+        List<SmallArcFurnaceRecipe> recipesSAF = RecipeParser.parseRecipeSmallArcFurnace(CommonProxy.dirSmallArcFurnaceRecipe);
         SmallArcFurnaceRecipe.RECIPES.addAll(recipesSAF);
     }
 }

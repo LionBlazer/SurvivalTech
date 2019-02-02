@@ -10,6 +10,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ru.whitewarrior.survivaltech.api.common.automatic.entity.BasicEntityEntry;
 import ru.whitewarrior.survivaltech.registry.entity.EntityRat;
+import ru.whitewarrior.survivaltech.registry.entity.EntityRocket;
+import ru.whitewarrior.survivaltech.registry.render.entity.RenderSpaceship;
 
 /**
  * Date: 2018-01-26.
@@ -19,15 +21,16 @@ import ru.whitewarrior.survivaltech.registry.entity.EntityRat;
 public class EntityRegister {
 	public static void preInit() {
 		ForgeRegistries.ENTITIES.register(new BasicEntityEntry(EntityRat.class, "rat"));
+		ForgeRegistries.ENTITIES.register(new BasicEntityEntry(EntityRocket.class, "spaceship"));
 
 	}
 
 	@SideOnly(Side.CLIENT)
     public static void initClient(){
-        Minecraft.getMinecraft().getRenderManager().entityRenderMap.put(EntityRat.class, new RenderMiner(Minecraft.getMinecraft().getRenderManager()){
-
-        });
+        Minecraft.getMinecraft().getRenderManager().entityRenderMap.put(EntityRat.class, new RenderMiner(Minecraft.getMinecraft().getRenderManager()));
+        Minecraft.getMinecraft().getRenderManager().entityRenderMap.put(EntityRocket.class, new RenderSpaceship());
     }
+
     @SideOnly(Side.CLIENT)
     public static class RenderMiner extends RenderBiped<EntityRat>
     {

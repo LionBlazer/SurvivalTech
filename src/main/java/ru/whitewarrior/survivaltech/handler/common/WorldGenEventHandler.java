@@ -51,6 +51,7 @@ public class WorldGenEventHandler {
                     return;
                 }
             }
+
             long start = System.currentTimeMillis();
             int ySize = generation.getKey().getYSize();
             data.getListVeinOre().put(new Pair<>(event.getChunkX()/getVeinX(), event.getChunkZ()/getVeinY()), generation);
@@ -75,7 +76,7 @@ public class WorldGenEventHandler {
                             if (event.getRand().nextFloat() < pairToGenerate.getValue() * 10)
                             {
                                 int i = (x ) & 15;
-                                int j = y; //Math.max(yPos + y, 0);
+                                int j = Math.min(yPos + y, 0);
                                 int k = z & 15;
                                 ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[j >> 4];
                                 if (extendedblockstorage == Chunk.NULL_BLOCK_STORAGE) {

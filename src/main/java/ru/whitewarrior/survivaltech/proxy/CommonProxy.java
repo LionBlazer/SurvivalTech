@@ -3,6 +3,7 @@ package ru.whitewarrior.survivaltech.proxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ru.whitewarrior.survivaltech.api.common.config.Conf;
 import ru.whitewarrior.survivaltech.api.common.energy.capability.CapabilityElectricEnergy;
 import ru.whitewarrior.survivaltech.handler.Handlers;
 import ru.whitewarrior.survivaltech.registry.*;
@@ -15,9 +16,9 @@ import java.io.File;
  * @author WhiteWarrior
  */
 public class CommonProxy {
-    public static File configRecipeArcFurnace;
+    public static File dirSmallArcFurnaceRecipe;
 	public void preInit(FMLPreInitializationEvent event) {
-        configRecipeArcFurnace = new File(event.getModConfigurationDirectory(), "survival tech/recipes/arc_furnace.cfg");
+        dirSmallArcFurnaceRecipe = Conf.dirConf("survival tech/small arc furnace/");
 		CapabilityElectricEnergy.register();
 		BlockRegister.preInit();
 		ItemRegister.preInit();

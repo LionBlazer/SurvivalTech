@@ -32,11 +32,11 @@ public class MessageRegister {
     }
 
     public static void register(Class<? extends SimplePacket> packet, Side side) {
-        try {
-            NETWORK.registerMessage(packet.newInstance(), packet, id++, side);
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+       // try {
+            //NETWORK.registerMessage(packet.newInstance(), packet, id++, side);
+       // } catch (InstantiationException | IllegalAccessException e) {
+          //  e.printStackTrace();
+        //}
     }
 
 }
