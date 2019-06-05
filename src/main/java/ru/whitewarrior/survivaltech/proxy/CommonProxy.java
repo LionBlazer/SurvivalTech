@@ -7,6 +7,7 @@ import ru.whitewarrior.survivaltech.api.common.config.Conf;
 import ru.whitewarrior.survivaltech.api.common.energy.capability.CapabilityElectricEnergy;
 import ru.whitewarrior.survivaltech.handler.Handlers;
 import ru.whitewarrior.survivaltech.registry.*;
+import ru.whitewarrior.survivaltech.registry.tileentity.oreextractor.recipe.OreExtractorRecipe;
 
 import java.io.File;
 
@@ -40,6 +41,7 @@ public class CommonProxy {
 
 	public void postInit(FMLPostInitializationEvent event) {
 		TileEntityRegister.postInit();
+        OreExtractorRecipe.bake();
 	}
 
 }

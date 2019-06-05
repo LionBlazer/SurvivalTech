@@ -2,7 +2,9 @@ package ru.whitewarrior.survivaltech.api.common.tileentity;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -11,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 
@@ -19,8 +22,10 @@ import javax.annotation.Nullable;
  * 
  * @author WhiteWarrior
  */
-public abstract class TileEntityInventory extends TileEntityBlock {
-    private ItemStackHandler handlerInventory = new ItemStackHandler(getSlots());
+public abstract class TileEntityInventory extends TileEntityBlock implements ISidedInventory {
+    private ItemStackInventoryHandler handlerInventory = new ItemStackInventoryHandler(getSlots());
+
+    private SidedInvWrapper[] wrappers = new SidedInvWrapper[EnumFacing.values().length];
 
     public ItemStackHandler getHandlerInventory() {
         return handlerInventory;
@@ -30,17 +35,23 @@ public abstract class TileEntityInventory extends TileEntityBlock {
 
     }
 
-
+    protected void setInventorySide(EnumFacing facing){
+        wrappers[facing.ordinal()] = new SidedInvWrapper(this, facing);
+    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+        if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return wrappers[facing.ordinal()] != null;
+        return super.hasCapability(capability, facing);
     }
 
     @Nullable
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)handlerInventory : super.getCapability(capability, facing);
+        if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return (T) wrappers[facing.ordinal()];
+        return super.getCapability(capability, facing);
     }
 
     public TileEntityInventory(String name) {
@@ -85,9 +96,7 @@ public abstract class TileEntityInventory extends TileEntityBlock {
     }
 
     public void setStackInSlot(int slot, ItemStack stack){
-
         handlerInventory.setStackInSlot(slot, stack);
-
     }
 
     public String getName() {
@@ -96,5 +105,90 @@ public abstract class TileEntityInventory extends TileEntityBlock {
 
     public boolean isUsableByPlayer(EntityPlayer playerIn){
         return true;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side) {
+        return new int[0];
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+        return false;
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return handlerInventory.getSlots();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        return ItemStackHelper.getAndSplit(handlerInventory.getStacks(), index, count);
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        return ItemStackHelper.getAndRemove(handlerInventory.getStacks(), index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        handlerInventory.setStackInSlot(index, stack);
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 64;
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {
+
+    }
+
+    @Override
+    public void closeInventory(EntityPlayer player) {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {
+
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return false;
     }
 }

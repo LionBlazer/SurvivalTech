@@ -5,12 +5,14 @@ import net.minecraft.init.Blocks;
 import ru.whitewarrior.api.Pair;
 import ru.whitewarrior.survivaltech.api.common.orevein.OreGeneration;
 import ru.whitewarrior.survivaltech.api.common.orevein.OreGenerationType;
+import ru.whitewarrior.survivaltech.api.common.orevein.SmallOreGeneration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorldGeneratorRegister {
-private static final List<OreGeneration> listGen = new ArrayList<>();
+    private static final List<OreGeneration> listGen = new ArrayList<>();
+    private static final List<SmallOreGeneration> smallListGen = new ArrayList<>();
 
     public static void preInit(){
         WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 10,(byte) 1,0.1f, 40,60,
@@ -53,9 +55,21 @@ private static final List<OreGeneration> listGen = new ArrayList<>();
         );
 
         WorldGeneratorRegister.registerGeneration(OreGenerationType.LARGE, 8,(byte) 2,0.01f, 2,13,
-                new Pair<>(GameMaterialRegister.diamond.getOresBlock().get(0).getDefaultState(), 0.022f),
-                new Pair<>(Blocks.DIAMOND_ORE.getDefaultState(), 0.022f)
+                new Pair<>(GameMaterialRegister.diamond.getOresBlock().get(0).getDefaultState(), 0.006f),
+                new Pair<>(Blocks.DIAMOND_ORE.getDefaultState(), 0.004f)
         );
+
+        getSmallListGen().add(
+                new SmallOreGeneration(GameMaterialRegister.small_iron.getOresBlock().get(0).getDefaultState(),
+                        1/8f, 10, 100));
+
+        getSmallListGen().add(
+                new SmallOreGeneration(GameMaterialRegister.copper.getOresBlock().get(2).getDefaultState(),
+                        1/8.1f, 10, 100));
+
+        getSmallListGen().add(
+                new SmallOreGeneration(GameMaterialRegister.tin.getOresBlock().get(2).getDefaultState(),
+                        1/8.05f, 10, 100));
     }
 
     /**
@@ -74,5 +88,9 @@ private static final List<OreGeneration> listGen = new ArrayList<>();
 
     public static List<OreGeneration> getListGen() {
         return listGen;
+    }
+
+    public static List<SmallOreGeneration> getSmallListGen() {
+        return smallListGen;
     }
 }

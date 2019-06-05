@@ -13,7 +13,8 @@ tile.tool_repairer.name=Ремонтник
 tile.copper_ore.name=Медная руда
 tile.copper_fullblock.name=Медный блок
 tile.tin_fullblock.name=Оловянный блок
-tile.small_arc_furnace.name=Маленькая дуговая печь
+tile.small_arc_furnace.name=Малая дуговая печь
+tile.ore_extractor.name=Экстрактор руд
 
 //item
 item.copper_ingot.name=Медный слиток
@@ -35,6 +36,8 @@ tile.cannotfilltank.bytemperature=Резервуар не может храни�
 //ore
 tile.malachite_ore.name=Малахитовая руда
 tile.chalcopyrite_ore.name=Халькопиритовая руда
+tile.small_copper_ore.name=Вкрапление медной руды
+tile.small_tin_ore.name=Вкрапление оловянной руды
 tile.iron_small_ore.name=Вкрапление железной руды
 tile.cassiterite_ore.name=Касситеритовая руда
 tile.stannite_ore.name=Станниновая руда
@@ -45,6 +48,7 @@ tile.scattered_diamond_ore.name=Разбросанная алмазная руд
 
 //nugget
 item.copper_nugget.name=Кусочек меди
+item.tin_nugget.name=Кусочек олова
 
 //Time
 info.time=Время

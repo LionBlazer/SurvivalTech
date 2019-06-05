@@ -8,6 +8,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.oredict.OreDictionary;
 import ru.whitewarrior.api.Pair;
@@ -163,7 +165,7 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
             }
           //  if(stateUpdate)
                 TileEntityUtil.setState(world, pos, BlockSolidFuelGenerator.BURNING, timeCurrent > 0 && Math.abs(timeCurrent - lasTimeMax) < 100);
-
+            extractEnergyFromSlot(0);
         }
 
     }
@@ -201,6 +203,7 @@ public class TileEntitySmallArcFurnace extends TileEntityEnergyStandard implemen
         return true;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public Object getGuiContainer(EntityPlayer player) {
         return new BasicGuiContainer((Container) getContainer(player), this, player){

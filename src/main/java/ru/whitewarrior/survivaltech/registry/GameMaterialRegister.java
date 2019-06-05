@@ -28,7 +28,7 @@ import ru.whitewarrior.survivaltech.registry.item.ItemHammer;
  */
 public class GameMaterialRegister {
 	public static BasicGameMaterial copper = new BasicGameMaterial("copper", 1, 1);
-    public static BasicGameMaterial small_iron = new BasicGameMaterial("iron_small", 0.6f, 1, false, false);
+    public static BasicGameMaterial small_iron = new BasicGameMaterial("iron_small", 0.7f, 1, false, false);
     public static BasicGameMaterial tin = new BasicGameMaterial("tin", 0.6f, 1, true, true);
     public static BasicGameMaterial gold = new BasicGameMaterial("gold", 0.6f, 1, false, false);
     public static BasicGameMaterial redstone = new BasicGameMaterial("redstone", 0.7f, 2, false, false);
@@ -37,15 +37,19 @@ public class GameMaterialRegister {
 	public static void preInit() {
         Item.ToolMaterial copperToolMaterial = EnumHelper.addToolMaterial("copper", 1, 100, 1, 2, 1);
         Item.ToolMaterial tinToolMaterial = EnumHelper.addToolMaterial("tin", 1, 80, 1, 2, 1);
+
         tin.setToolMaterial(tinToolMaterial);
         tin.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "cassiterite", 1.4f, 1.2f, 2, 0, 0, "stannite"));
         tin.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "stannite", 1.0f, 0.9f, 1, 0, 0, "stannite"));
+        tin.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "small_tin", 0.95f, 0.9f, 1, 0, 0, "smallTin"));
         tin.addChunk(new BasicTypeItem("tin", ItemType.CHUNK, 4, 0));
         tin.addChunk(new BasicTypeItem("tin", ItemType.SMALL_CHUNK, 16, 0));
+        tin.setNugget(new BasicTypeItem("tin", ItemType.NUGGET, 64, 0));
 
         copper.setToolMaterial(copperToolMaterial);
         copper.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "chalcopyrite", 1, 0.8f, 1, 0, 0, "chalcopyrite"));
         copper.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "malachite", 1.2f, 0.95f, 1, 0, 0, "malachite"));
+        copper.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "small_copper", 1.1f, 0.92f, 1, 0, 0, "smallCopper"));
         copper.setNugget(new BasicTypeItem("copper", ItemType.NUGGET, 64, 0));
 
         small_iron.getOresBlock().add(new BasicTypeBlock(BlockType.ORE, "iron_small", 0.6f, 0.8f, 1, 0, 0));
@@ -53,6 +57,7 @@ public class GameMaterialRegister {
         copper.addHammer(new ItemHammer(copper.getToolMaterial(), "copper_hammer", 100));
         copper.addChunk(new BasicTypeItem("copper", ItemType.CHUNK, 4, 0));
         copper.addChunk(new BasicTypeItem("copper", ItemType.SMALL_CHUNK, 16, 0));
+
         tinToolMaterial.setRepairItem(new ItemStack(tin.getIngot()));
         copperToolMaterial.setRepairItem(new ItemStack(copper.getIngot()));
 
@@ -85,9 +90,11 @@ public class GameMaterialRegister {
     public static void preInitClient() {
         ModModelLoader.registerModel(copper.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/chalcopyrite")));
         ModModelLoader.registerModel(copper.getOresBlock().get(1).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/malachite")));
+        ModModelLoader.registerModel(copper.getOresBlock().get(2).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_copper")));
 
         ModModelLoader.registerModel(tin.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/cassiterite")));
         ModModelLoader.registerModel(tin.getOresBlock().get(1).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/stannite")));
+        ModModelLoader.registerModel(tin.getOresBlock().get(2).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_tin")));
 
         ModModelLoader.registerModel(gold.getOresBlock().get(0).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/small_gold")));
         ModModelLoader.registerModel(gold.getOresBlock().get(1).getRegistryName(), new OreModel(new ResourceLocation(Constants.MODID, "block/ore/scattered_gold")));
@@ -97,6 +104,7 @@ public class GameMaterialRegister {
 
 
         GameMaterialRegister.registerBasicItemModel(copper.getNugget());
+        GameMaterialRegister.registerBasicItemModel(tin.getNugget());
         GameMaterialRegister.registerBasicItemModel(tin.getIngot());
         GameMaterialRegister.registerItemToolModel(copper.getItemsMaterial().get(0));
         GameMaterialRegister.registerBasicItemModel(copper.getItemsMaterial().get(1));

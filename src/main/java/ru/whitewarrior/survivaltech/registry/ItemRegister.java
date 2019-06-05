@@ -29,7 +29,7 @@ public class ItemRegister {
     public static ItemHammer ironHammer = new ItemHammer(Item.ToolMaterial.IRON, "iron_hammer", 200);
     public static ItemOreMap oreMap = new ItemOreMap("ore_map");
     public static ItemOreMapEmpty oreMapEmpty = new ItemOreMapEmpty("ore_map_empty");
-
+    public static Item
 
 	public static void preInit() {
 		AdvancedRegistry.register(battery);

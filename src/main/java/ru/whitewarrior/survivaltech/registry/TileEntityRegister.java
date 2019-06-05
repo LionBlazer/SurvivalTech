@@ -3,6 +3,7 @@ package ru.whitewarrior.survivaltech.registry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ru.whitewarrior.survivaltech.registry.tileentity.fluidtank.TileEntityFluidTank;
 import ru.whitewarrior.survivaltech.registry.tileentity.ledmachine.TileEntityLedMachine;
+import ru.whitewarrior.survivaltech.registry.tileentity.oreextractor.TileEntityOreExtractor;
 import ru.whitewarrior.survivaltech.registry.tileentity.redstonefluxconverter.TileEntityRedStoneFluxAntiConverter;
 import ru.whitewarrior.survivaltech.registry.tileentity.redstonefluxconverter.TileEntityRedStoneFluxConverter;
 import ru.whitewarrior.survivaltech.registry.tileentity.smallarcfurnace.TileEntitySmallArcFurnace;
@@ -24,6 +25,7 @@ public class TileEntityRegister {
 		GameRegistry.registerTileEntity(TileEntityFluidTank.class, "TileEntityFluidTank");
         GameRegistry.registerTileEntity(TileEntityLedMachine.class, "TileEntityLedMachine");
         GameRegistry.registerTileEntity(TileEntitySmallArcFurnace.class, "TileEntitySmallArcFurnace");
+        GameRegistry.registerTileEntity(TileEntityOreExtractor.class, "TileEntityOreExtractor");
         GameRegistry.registerTileEntity(TileEntityRedStoneFluxConverter.class, "TileEntityRedStoneFluxConverter");
         GameRegistry.registerTileEntity(TileEntityRedStoneFluxAntiConverter.class, "TileEntityRedStoneFluxAntiConverter");
 	}

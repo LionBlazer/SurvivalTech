@@ -26,6 +26,7 @@ public class BlockRegister {
 	public static Block fluidTank = new BlockFluidTank(BlockType.GLASS, "fluid_tank");
     public static Block ledMachine = new BlockLedMachine(BlockType.MECHANISM, "led_machine");
     public static Block smallArcFurnace = new BlockSmallArcFurnace(BlockType.MECHANISM, "small_arc_furnace");
+    public static Block oreExtractor = new BlockOreExtractor(BlockType.MECHANISM, "ore_extractor");
 
     public static Block launchingPad = new BlockLaunchingPad(BlockType.MECHANISM, "launching_pad");
 
@@ -42,6 +43,7 @@ public class BlockRegister {
 		AdvancedRegistry.register(fluidTank);
         AdvancedRegistry.register(ledMachine);
         AdvancedRegistry.register(smallArcFurnace);
+        AdvancedRegistry.register(oreExtractor);
         AdvancedRegistry.register(launchingPad);
 
         if(Loader.isModLoaded("redstoneflux")) {
@@ -66,6 +68,7 @@ public class BlockRegister {
 		AdvancedRegistry.registerRender(fluidTank);
         AdvancedRegistry.registerRender(ledMachine);
         AdvancedRegistry.registerRender(smallArcFurnace);
+        AdvancedRegistry.registerRender(oreExtractor);
         AdvancedRegistry.registerRender(energyConverter);
         AdvancedRegistry.registerRender(energyAntiConverter);
         AdvancedRegistry.registerRender(launchingPad);

@@ -46,18 +46,8 @@ public class TileEntitySmallEnergyStorage extends TileEntityEnergyManager implem
 	public void update() {
 		super.update();
 		if(!world.isRemote) {
-			if(this.getStackInSlot(0).getItem() instanceof IItemElectricEnergyStorage) {
-				double energyReceive = this.getStackInSlot(0).getCapability(CapabilityElectricEnergy.ENERGY, null).receiveEnergy(this.getStorage().extractEnergy(this.getStorage().getMaxExtract(), true), false);
-				this.getStorage().extractEnergy(energyReceive, false);
-				updateVars();
-				markDirty();
-			}
-			if(this.getStackInSlot(1).getItem() instanceof IItemElectricEnergyStorage) {
-				double energyReceive = this.getStackInSlot(1).getCapability(CapabilityElectricEnergy.ENERGY, null).extractEnergy(this.getStorage().receiveEnergy(this.getStorage().getMaxReceive(), true), false);
-				this.getStorage().receiveEnergy(energyReceive, false);
-				updateVars();
-                markDirty();
-			}
+			extractEnergyToSlot(0);
+			extractEnergyFromSlot(1);
 		}
 	}
 

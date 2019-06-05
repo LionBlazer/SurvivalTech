@@ -7,6 +7,7 @@ import net.minecraft.util.EnumFacing;
 import org.lwjgl.util.vector.Vector3f;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
 public class BlockBakedModel implements IBakedModel {
@@ -20,6 +21,8 @@ public class BlockBakedModel implements IBakedModel {
 
     @Override
     public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
+        if(side == null) // handle every side
+            return Collections.EMPTY_LIST;
         return quads;
     }
 

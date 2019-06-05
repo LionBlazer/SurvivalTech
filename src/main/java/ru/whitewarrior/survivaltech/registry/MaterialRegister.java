@@ -19,6 +19,7 @@ import ru.whitewarrior.survivaltech.Constants;
 import ru.whitewarrior.survivaltech.api.common.container.slot.SlotSolidFuel;
 import ru.whitewarrior.survivaltech.registry.item.ItemOreMap;
 import ru.whitewarrior.survivaltech.registry.recipe.HammerRecipes;
+import ru.whitewarrior.survivaltech.registry.tileentity.oreextractor.recipe.OreExtractorRecipe;
 import ru.whitewarrior.survivaltech.registry.tileentity.smallarcfurnace.recipe.SmallArcFurnaceRecipe;
 import ru.whitewarrior.survivaltech.registry.tileentity.toolrepairer.recipe.ToolRepairerRecipes;
 
@@ -31,7 +32,7 @@ import java.util.HashMap;
  * @author WhiteWarrior
  */
 public class MaterialRegister {
-	public static HashMap<Item, Integer> fuel = new HashMap<Item, Integer>();
+	public static HashMap<Item, Integer> fuel = new HashMap<>();
 	public static final Material MECHANISM = new Material(MapColor.IRON);
 	public static final ToolMaterial WRENCH = EnumHelper.addToolMaterial("wrench", 0, 100, 1, 0, 0);
 	public static final ToolMaterial ELECTRIC = EnumHelper.addToolMaterial("electric", 2, 100, 1, 0, 0);
@@ -78,15 +79,23 @@ public class MaterialRegister {
 		ToolRepairerRecipes.registerRecipe(Items.GOLDEN_SWORD, Items.GOLD_INGOT);
 
 
+        OreExtractorRecipe.RECIPES.add(new OreExtractorRecipe(10, new ItemStack(GameMaterialRegister.copper.getNugget())));
+        OreExtractorRecipe.RECIPES.add(new OreExtractorRecipe(10, new ItemStack(Items.IRON_NUGGET)));
+        OreExtractorRecipe.RECIPES.add(new OreExtractorRecipe(10, new ItemStack(GameMaterialRegister.tin.getNugget())));
+
         GameRegistry.addSmelting(GameMaterialRegister.small_iron.getOresBlock().get(0), new ItemStack(Items.IRON_NUGGET, 3), 0.1f);
         GameRegistry.addSmelting(GameMaterialRegister.copper.getItemsMaterial().get(1), new ItemStack(GameMaterialRegister.copper.getNugget(), 4), 0.1f);
         GameRegistry.addSmelting(GameMaterialRegister.copper.getOresBlock().get(1), new ItemStack(GameMaterialRegister.copper.getItemsMaterial().get(2), 3), 0.1f);
+        GameRegistry.addSmelting(GameMaterialRegister.copper.getOresBlock().get(2), new ItemStack(GameMaterialRegister.copper.getNugget(), 2), 0.05f);
+
+        GameRegistry.addSmelting(GameMaterialRegister.tin.getOresBlock().get(2), new ItemStack(GameMaterialRegister.tin.getNugget(), 1), 0.05f);
 
         GameRegistry.addSmelting(GameMaterialRegister.gold.getOresBlock().get(0), new ItemStack(Items.GOLD_NUGGET, 3), 0.1f);
         GameRegistry.addSmelting(GameMaterialRegister.redstone.getOresBlock().get(0), new ItemStack(Items.REDSTONE, 2), 0.1f);
 
 
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"copperIngot1"), null, new ItemStack(GameMaterialRegister.copper.getIngot()), "TTT", "TTT", "TTT", 'T', "nuggetCopper");
+        GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"tinIngot1"), null, new ItemStack(GameMaterialRegister.tin.getIngot()), "TTT", "TTT", "TTT", 'T', "nuggetTin");
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"copperBlock1"), null, new ItemStack(GameMaterialRegister.copper.getFullBlock()), "TTT", "TTT", "TTT", 'T', "ingotCopper");
 
         GameRegistry.addShapedRecipe(new ResourceLocation(Constants.MODID,"hammerCopper"), null, new ItemStack(GameMaterialRegister.copper.getItemsMaterial().get(0)), "TTT", "TTT", " S ", 'T', "ingotCopper", 'S', Items.STICK);

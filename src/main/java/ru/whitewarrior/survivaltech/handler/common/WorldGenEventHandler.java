@@ -3,6 +3,7 @@ package ru.whitewarrior.survivaltech.handler.common;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -11,25 +12,51 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ru.whitewarrior.api.Pair;
 import ru.whitewarrior.survivaltech.api.common.orevein.OreGeneration;
+import ru.whitewarrior.survivaltech.api.common.orevein.SmallOreGeneration;
 import ru.whitewarrior.survivaltech.registry.WorldGeneratorRegister;
 import ru.whitewarrior.survivaltech.registry.worldsaveddata.OreGenSavedData;
 import ru.whitewarrior.survivaltech.util.WorldSavedDataUtil;
 
+import java.util.Random;
+
 public class WorldGenEventHandler {
+    private void gen(Chunk chunk, Random random, SmallOreGeneration small, World world, int x, int y, int z){
+        int i = x & 15;
+        int k = z & 15;
+        int j = y;
+        ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[j >> 4];
+        if (extendedblockstorage == Chunk.NULL_BLOCK_STORAGE) {
+            extendedblockstorage = new ExtendedBlockStorage(j >> 4 << 4, world.provider.hasSkyLight());
+            chunk.getBlockStorageArray()[j >> 4] = extendedblockstorage;
+        }
+        if (chunk.getBlockStorageArray()[j >> 4].get(i, j & 15, k) == Blocks.STONE.getDefaultState())
+            extendedblockstorage.set(i, j & 15, k, small.getState());
+    }
+
     @SubscribeEvent
     public void event1(PopulateChunkEvent.Populate event) {
-        int chunkX = event.getChunkX();
-        int chunkZ = event.getChunkZ();
 
         if (event.getWorld().getWorldType().getId() == DimensionType.OVERWORLD.getId()) {
-
-
+            Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+            for(SmallOreGeneration small : WorldGeneratorRegister.getSmallListGen()){
+                for (int index = 0; index < 100; index++) {
+                    if(event.getRand().nextFloat() <= small.getChange()){
+                        int x = event.getRand().nextInt(16);
+                        int z = event.getRand().nextInt(16);
+                        int y = small.getMinY() + event.getRand().nextInt(small.getMaxY() - small.getMinY() + 1);
+                        for (int vein = 0; vein < event.getRand().nextInt(2); vein++) {
+                            gen(chunk, event.getRand(), small, event.getWorld(), x+ (event.getRand().nextBoolean() ? 1 : 0), y + (event.getRand().nextBoolean() ? 1 : 0), z + (event.getRand().nextBoolean() ? 1 : 0));
+                        }
+                        gen(chunk, event.getRand(), small, event.getWorld(), x, y , z);
+                    }
+                }
+            }
             if (WorldGeneratorRegister.getListGen().size() == 0)
                 return;
             OreGenSavedData data = WorldSavedDataUtil.get(event.getWorld(), "ore_gen_data", OreGenSavedData.class);
             Pair<OreGeneration, Integer> generation = null;
             int yPos = 0;
-            Pair<Integer, Integer> pair = new Pair(event.getChunkX()/getVeinX(), event.getChunkZ()/getVeinY());
+            Pair<Integer, Integer> pair = new Pair<>(event.getChunkX()/getVeinX(), event.getChunkZ()/getVeinY());
             if (data.getListVeinOre().containsKey(pair)){
                 generation = data.getListVeinOre().get(pair);
             }
@@ -52,11 +79,9 @@ public class WorldGenEventHandler {
                 }
             }
 
-            long start = System.currentTimeMillis();
             int ySize = generation.getKey().getYSize();
             data.getListVeinOre().put(new Pair<>(event.getChunkX()/getVeinX(), event.getChunkZ()/getVeinY()), generation);
             data.markDirty();
-            Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
 
             boolean isRotateX = Math.abs(((event.getChunkX() < 0 ? getVeinX() - 1 : 0) + event.getChunkX()) % getVeinX()) == 0;
             boolean isRotateX2 = Math.abs(((event.getChunkX() < 0 ? 1 : 0) + event.getChunkX()) % getVeinX()) == getVeinX() - 1;
@@ -76,7 +101,7 @@ public class WorldGenEventHandler {
                             if (event.getRand().nextFloat() < pairToGenerate.getValue() * 10)
                             {
                                 int i = (x ) & 15;
-                                int j = Math.min(yPos + y, 0);
+                                int j = Math.max(yPos + y, 0);
                                 int k = z & 15;
                                 ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[j >> 4];
                                 if (extendedblockstorage == Chunk.NULL_BLOCK_STORAGE) {
@@ -91,7 +116,6 @@ public class WorldGenEventHandler {
 
                 }
             }
-            long end = System.currentTimeMillis();
 
         }
 

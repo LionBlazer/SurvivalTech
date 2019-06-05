@@ -14,6 +14,7 @@ tile.copper_ore.name=Copper ore
 tile.copper_fullblock.name=Copper block
 tile.tin_fullblock.name=Tin block
 tile.small_arc_furnace.name=Small arc furnace
+tile.ore_extractor.name=Ore extractor
 
 //item
 item.copper_ingot.name=Copper ingot
@@ -42,9 +43,12 @@ tile.small_gold_ore.name=Inclusions of gold ore
 tile.small_redstone_ore.name=Inclusions of redstone ore
 tile.scattered_gold_ore.name=Scattered gold ore
 tile.scattered_diamond_ore.name=Scattered diamond ore
+tile.small_copper_ore.name=Inclusions of copper ore
+tile.small_tin_ore.name=Inclusions of tin ore
 
 //nugget
 item.copper_nugget.name=Copper nugget
+item.tin_nugget.name=Tin nugget
 
 //Time
 info.time=Time
